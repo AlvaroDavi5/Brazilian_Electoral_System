@@ -9,11 +9,39 @@ public class ElectionInfo {
 	// attributes
 	private String data = "";
 	private char entity = '\0';
+	private Date electionDate = null;
 	private LinkedList<Candidate> candidates = new LinkedList<Candidate>();
 	private LinkedList<Party> parties = new LinkedList<Party>();
 
 
 	// methods
+	public Date parseStringToDate(String strDate) {
+		Date date = null;
+
+		try {
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			date = dateFormatter.parse(strDate);
+		}
+		catch (ParseException exception) {
+			exception.printStackTrace();
+		}
+
+		return date;
+	}
+	public String parseDateToString(Date date) {
+		String strDate = "";
+
+		try {
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			strDate = dateFormatter.format(date);
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+		return strDate;
+	}
+
 	public String getData() {
 		return data;
 	}
@@ -29,6 +57,13 @@ public class ElectionInfo {
 	}
 	public void setEntity(char newEntity) {
 		this.entity = newEntity;
+	}
+
+	public Date getElectionDate() {
+		return electionDate;
+	}
+	public void setElectionDate(Date newElectionDate) {
+		this.electionDate = newElectionDate;
 	}
 
 	public LinkedList<Candidate> getCandidates() {
@@ -72,14 +107,7 @@ public class ElectionInfo {
 					candidate.setSituation(splitedLineData[2]);
 					candidate.setName(splitedLineData[3]);
 					candidate.setGender((char) splitedLineData[5].charAt(0));
-					try {
-						SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-						Date birthDate = dateFormatter.parse(splitedLineData[6]);
-						candidate.setBirthDate(birthDate);
-					}
-					catch (ParseException exception) {
-						candidate.setBirthDate(null);
-					}
+					candidate.setBirthDate(parseStringToDate(splitedLineData[6]));
 					candidate.setVotesDestiny(splitedLineData[7]);
 					candidate.setPoliticalPartyNumber(Integer.parseInt(splitedLineData[8]));
 

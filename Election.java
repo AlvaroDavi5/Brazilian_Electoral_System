@@ -10,7 +10,10 @@ public class Election {
 
 		try {
 			ElectionInfo candidatesElection = util.readFile(args[0]);
-			ElectionInfo partiesElection = util.readFile(args[1]);				
+			ElectionInfo partiesElection = util.readFile(args[1]);
+
+			candidatesElection.setElectionDate(candidatesElection.parseStringToDate(args[2]));
+			partiesElection.setElectionDate(partiesElection.parseStringToDate(args[2]));
 
 			candidatesElection.loadEntitiesFromData();
 			partiesElection.loadEntitiesFromData();

@@ -1,6 +1,5 @@
 package source;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 
 public class Candidate {
@@ -32,7 +31,7 @@ public class Candidate {
 		System.out.println("Candidate situation: " + situation);
 		System.out.println("Candidate political party number: " + politicalPartyNumber);
 		System.out.println("Candidate gender: " + gender);
-		System.out.println("Candidate birthdate: " + getFormattedBirthDate());
+		System.out.println("Candidate birthdate: " + birthDate);
 	}
 
 	public int getNumber() {
@@ -96,19 +95,6 @@ public class Candidate {
 
 	public Date getBirthDate() {
 		return birthDate;
-	}
-	public String getFormattedBirthDate() {
-		String formattedData = "";
-
-		try {
-			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-			formattedData = dateFormatter.format(birthDate);
-		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-		}
-
-		return formattedData;
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
