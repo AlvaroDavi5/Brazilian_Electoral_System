@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Utils {
-
+	// methods
 	public int countColumns(String row)
 	{
 		String[] columns = row.split(",");
@@ -68,9 +68,9 @@ public class Utils {
 		line = in.nextLine();
 		buff.append(line + '\n');
 		buff.close();
+		in.close();
 
 		return false;
 	}
 
 }
-

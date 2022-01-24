@@ -1,7 +1,8 @@
+package source;
 import java.util.Date;
 
 
-public class Candidates {
+public class Candidate {
 	// attributes
 	private int number = 0;
 	private int politicalPartyNumber = 0;
@@ -16,5 +17,5 @@ public class Candidates {
 
 	// methods
 	//
-}
 
+}

@@ -1,5 +1,6 @@
 import source.*;
 import java.io.IOException;
+import java.lang.ArrayIndexOutOfBoundsException;
 
 
 public class Election {
@@ -8,14 +9,19 @@ public class Election {
 	{
 		Utils util = new Utils();
 
-		ElectionInfo candidatesEle = util.readFile(args[0]);
-		ElectionInfo partiesEle = util.readFile(args[1]);
+		try {
+			ElectionInfo candidatesElection = util.readFile(args[0]);
+			ElectionInfo partiesElection = util.readFile(args[1]);				
 
-		System.out.println(candidatesEle.getData());
-		System.out.println(partiesEle.getData());
+			System.out.println(candidatesElection.getData());
+			System.out.println(partiesElection.getData());
+		}
+		catch (ArrayIndexOutOfBoundsException exception) {
+			System.out.println("Please enter the correct number of arguments (2 arguments)");
+			System.out.println(exception);
+		}
 
 		//
 	}
 
 }
-

@@ -1,5 +1,6 @@
+package source;
 
-public class Parties {
+public class Party {
 	// attributes
 	private int number = 0;
 	private String name = "";
@@ -9,5 +10,5 @@ public class Parties {
 
 	// methods
 	//
-}
 
+}
