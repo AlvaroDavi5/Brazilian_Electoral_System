@@ -1,5 +1,6 @@
 package source;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 public class Candidate {
@@ -15,7 +16,101 @@ public class Candidate {
 	private Date birthDate = null;
 
 
-	// methods
-	//
+	// constructor method
+	public Candidate(String ballotBoxAlias) {
+		this.ballotBoxAlias = ballotBoxAlias;
+	}
 
+
+	// methods
+	public void displayCandidateInfo() {
+		System.out.println("Candidate alias: " + ballotBoxAlias);
+		System.out.println("Candidate number: " + number);
+		System.out.println("Candidate name: " + name);
+		System.out.println("Candidate votes: " + votes);
+		System.out.println("Candidate votes destiny: " + votesDestiny);
+		System.out.println("Candidate situation: " + situation);
+		System.out.println("Candidate political party number: " + politicalPartyNumber);
+		System.out.println("Candidate gender: " + gender);
+		System.out.println("Candidate birthdate: " + getFormattedBirthDate());
+	}
+
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getPoliticalPartyNumber() {
+		return politicalPartyNumber;
+	}
+	public void setPoliticalPartyNumber(int politicalPartyNumber) {
+		this.politicalPartyNumber = politicalPartyNumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getBallotBoxAlias() {
+		return ballotBoxAlias;
+	}
+	public void setBallotBoxAlias(String ballotBoxAlias) {
+		this.ballotBoxAlias = ballotBoxAlias;
+	}
+
+	public int getVotes() {
+		return votes;
+	}
+	public void setVotes(int votes) {
+		this.votes = votes;
+	}
+	public void addVotes(int votes) {
+		this.votes += votes;
+	}
+
+	public String getVotesDestiny() {
+		return votesDestiny;
+	}
+	public void setVotesDestiny(String votesDestiny) {
+		this.votesDestiny = votesDestiny;
+	}
+
+	public String getSituation() {
+		return situation;
+	}
+	public void setSituation(String situation) {
+		this.situation = situation;
+	}
+	
+	public char getGender() {
+		return gender;
+	}
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public String getFormattedBirthDate() {
+		String formattedData = "";
+
+		try {
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+			formattedData = dateFormatter.format(birthDate);
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+		return formattedData;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
 }

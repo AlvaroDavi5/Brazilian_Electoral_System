@@ -1,4 +1,7 @@
 
+# editor/IDE settings
+*.vscode
+
+# build artifacts and other files
 *.class
 *.pdf
-
