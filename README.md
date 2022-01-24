@@ -7,18 +7,29 @@
 * [ ] Create a JAR file called `vereadores.jar` with the compiled classes and a `MANIFEST.mf` file
 	> The MANIFEST file will define the main class  
 	> The _main_ method of the **Main** class must receive the following parameters:  
-		> - `candidates_file`: the path to the candidates file  
-		> - `parties_file`: the path to the parties file  
-		> - `election_date`: the election date  
+		- `candidates_file`: the path to the candidates file  
+		- `parties_file`: the path to the parties file  
+		- `election_date`: the election date  
 	> The execution command is:  
-		> `java -jar vereadores.jar <candidates_file> <parties_file> <election_date>`  
+		`java -jar vereadores.jar <candidates_file> <parties_file> <election_date>`  
 * [ ] Create a Ant `build.xml` file
 
 ___
 
 # ABOUT
 
-This is a Java project.
+por _Álvaro Davi S. Alves_ - **2020101874**
+e _Elder Storck_ - **2020······**
+
+Primeiro trabalho de ```Programação III (Programação Orientada a Objetos)```
+
+
+#### Turma de Engenharia da Computação :computer:
+
+### Universidade Federal do Espirito Santo ([UFES](https://ufes.br))
+
+
+<img src="./docs/img/marca_ufes.png" alt="logo da ufes" height="150px" width="250px">   
 
 ---
 
