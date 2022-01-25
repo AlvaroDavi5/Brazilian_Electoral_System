@@ -18,18 +18,18 @@ ___
 
 # ABOUT
 
-por _Álvaro Davi S. Alves_ - **2020101874**
-e _Elder Storck_ - **2020······**
+by _Álvaro Davi S. Alves_ - **2020101874**
+and _Elder Storck_ - **2020······**
 
-Primeiro trabalho de ```Programação III (Programação Orientada a Objetos)```
+First assignment for the discipline  ```Programação III (Object-Oriented Programming)```.
 
 
-#### Turma de Engenharia da Computação :computer:
+#### Computer Engineering Class :computer:
 
 ### Universidade Federal do Espirito Santo ([UFES](https://ufes.br))
 
 
-<img src="./docs/img/marca_ufes.png" alt="logo da ufes" height="150px" width="250px">   
+<img src="./docs/img/marca_ufes.png" alt="ufes logo" height="150px" width="250px">   
 
 ---
 

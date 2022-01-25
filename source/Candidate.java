@@ -31,7 +31,8 @@ public class Candidate {
 		System.out.println("Candidate situation: " + situation);
 		System.out.println("Candidate political party number: " + politicalPartyNumber);
 		System.out.println("Candidate gender: " + gender);
-		System.out.println("Candidate birthdate: " + birthDate);
+		ElectionInfo info = new ElectionInfo();
+		System.out.println("Candidate birthdate: " + info.parseDateToString(birthDate));
 	}
 
 	public int getNumber() {

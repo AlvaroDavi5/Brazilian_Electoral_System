@@ -10,8 +10,8 @@ public class ElectionInfo {
 	private String data = "";
 	private char entity = '\0';
 	private Date electionDate = null;
-	private LinkedList<Candidate> candidates = new LinkedList<Candidate>();
-	private LinkedList<Party> parties = new LinkedList<Party>();
+	private LinkedList<Candidate> candidates = null;
+	private LinkedList<Party> parties = null;
 
 
 	// methods
@@ -67,22 +67,38 @@ public class ElectionInfo {
 	}
 
 	public LinkedList<Candidate> getCandidates() {
+		if (candidates == null) {
+			candidates = new LinkedList<Candidate>();
+		}
+
 		return candidates;
 	}
 	public void setCandidates(LinkedList<Candidate> newCandidates) {
 		this.candidates = newCandidates;
 	}
 	public void addCandidate(Candidate newCandidate) {
+		if (candidates == null) {
+			candidates = new LinkedList<Candidate>();
+		}
+
 		this.candidates.add(newCandidate);
 	}
 
 	public LinkedList<Party> getParties() {
+		if (parties == null) {
+			parties = new LinkedList<Party>();
+		}
+
 		return parties;
 	}
 	public void setParties(LinkedList<Party> newParties) {
 		this.parties = newParties;
 	}
 	public void addParty(Party newParty) {
+		if (parties == null) {
+			parties = new LinkedList<Party>();
+		}
+
 		this.parties.add(newParty);
 	}
 
