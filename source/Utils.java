@@ -1,5 +1,4 @@
 package source;
-import java.util.Scanner;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -55,19 +54,14 @@ public class Utils {
 		return eleInfo;
 	}
 
-	public boolean writeFile(String path) throws IOException {
+	public boolean writeFile(String path, String text) throws IOException {
 		FileWriter writer = new FileWriter(path);
 		BufferedWriter buff = new BufferedWriter(writer);
-		String line = "";
 
-		Scanner in = new Scanner(System.in);
-		System.out.println("Type anything: ");
-		line = in.nextLine();
-		buff.append(line + "\n");
+		buff.append(text);
 		buff.close();
-		in.close();
 
-		return false;
+		return true;
 	}
 
 }

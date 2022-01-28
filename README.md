@@ -40,8 +40,8 @@ To run this project, you need to have the [JDK version 11](https://www.oracle.co
 After installing the JDK, you can run the project by typing the following command in the terminal:  
 ```sh
 #to compile the project
-javac -d bin/ ./Election.java
+javac -d ./bin/ ./Election.java
 
 # to run the project
-java ./bin/Election ./input/data/candidatos.csv ./input/data/partidos.csv
+java ./bin/Election ./input/data/candidatos.csv ./input/data/partidos.csv 15/11/2020
 ```
