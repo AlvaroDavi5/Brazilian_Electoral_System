@@ -1,5 +1,6 @@
-package source;
+package source.classes;
 import java.util.Date;
+import source.Election;
 
 
 public class Candidate {
@@ -31,7 +32,7 @@ public class Candidate {
 		System.out.println("Candidate situation: " + situation);
 		System.out.println("Candidate political party number: " + politicalPartyNumber);
 		System.out.println("Candidate gender: " + gender);
-		ElectionInfo info = new ElectionInfo();
+		Election info = new Election();
 		System.out.println("Candidate birthdate: " + info.parseDateToString(birthDate));
 	}
 

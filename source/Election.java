@@ -3,9 +3,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import source.classes.*;
 
 
-public class ElectionInfo {
+public class Election {
 	// attributes
 	private String data = "";
 	private char entity = '\0';

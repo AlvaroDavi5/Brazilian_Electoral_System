@@ -1,4 +1,5 @@
-package source;
+package source.classes;
+
 
 public class Party {
 	// attributes

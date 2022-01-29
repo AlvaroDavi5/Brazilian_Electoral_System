@@ -1,17 +1,18 @@
-import source.*;
+package source;
+import source.classes.*;
 import java.io.IOException;
 import java.lang.ArrayIndexOutOfBoundsException;
 
 
-public class Election {
+public class Main {
 
 	public static void main(String[] args) throws IOException {
-		ElectionInfo election = new ElectionInfo();
+		Election election = new Election();
 
 		try {
 			Utils util = new Utils();
-			ElectionInfo candidatesElection = util.readFile(args[0]);
-			ElectionInfo partiesElection = util.readFile(args[1]);
+			Election candidatesElection = util.readFile(args[0]);
+			Election partiesElection = util.readFile(args[1]);
 
 			candidatesElection.loadEntitiesFromData();
 			partiesElection.loadEntitiesFromData();

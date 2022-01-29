@@ -1,9 +1,10 @@
-package source;
+package source.classes;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import source.Election;
 
 
 public class Utils {
@@ -14,12 +15,12 @@ public class Utils {
 		return columns.length;
 	}
 
-	public ElectionInfo readFile(String path) throws IOException {
+	public Election readFile(String path) throws IOException {
 		FileReader reader = new FileReader(path);
 		BufferedReader buff = new BufferedReader(reader);
 		String line = "";
 		boolean firstLine = true;
-		ElectionInfo eleInfo = new ElectionInfo();
+		Election eleInfo = new Election();
 
 		while (true)
 		{
