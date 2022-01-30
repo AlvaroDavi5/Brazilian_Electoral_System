@@ -1,4 +1,10 @@
 
+# editor/IDE settings
+*.vscode
+
+# output files
+/output
+
+# build files and other files
 *.class
 *.pdf
-

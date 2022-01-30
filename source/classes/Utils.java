@@ -1,28 +1,26 @@
-package source;
+package source.classes;
+import java.util.Date;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import source.Election;
 
 
 public class Utils {
 	// methods
-	public int countColumns(String row)
-	{
+	public int countColumns(String row) {
 		String[] columns = row.split(",");
 
 		return columns.length;
 	}
 
-	public ElectionInfo readFile(String path) throws IOException
-	{
+	public void readFile(String path, Election eleInfo) throws IOException {
 		FileReader reader = new FileReader(path);
 		BufferedReader buff = new BufferedReader(reader);
 		String line = "";
 		boolean firstLine = true;
-		ElectionInfo eleInfo = new ElectionInfo();
 
 		while (true)
 		{
@@ -53,24 +51,27 @@ public class Utils {
 		}
 
 		buff.close();
-
-		return eleInfo;
 	}
 
-	public boolean writeFile(String path) throws IOException
-	{
+	public boolean writeFile(String path, String text) throws IOException {
 		FileWriter writer = new FileWriter(path);
 		BufferedWriter buff = new BufferedWriter(writer);
-		String line = "";
 
-		Scanner in = new Scanner(System.in);
-		System.out.println("Type anything: ");
-		line = in.nextLine();
-		buff.append(line + '\n');
+		buff.append(text);
 		buff.close();
-		in.close();
 
-		return false;
+		return true;
+	}
+
+	public boolean olderThan(Date d1, Date d2) {
+		int comparation = d1.compareTo(d2);
+
+		if (comparation >= 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }
