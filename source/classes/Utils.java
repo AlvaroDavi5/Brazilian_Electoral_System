@@ -1,4 +1,5 @@
 package source.classes;
+import java.util.Date;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -15,12 +16,11 @@ public class Utils {
 		return columns.length;
 	}
 
-	public Election readFile(String path) throws IOException {
+	public void readFile(String path, Election eleInfo) throws IOException {
 		FileReader reader = new FileReader(path);
 		BufferedReader buff = new BufferedReader(reader);
 		String line = "";
 		boolean firstLine = true;
-		Election eleInfo = new Election();
 
 		while (true)
 		{
@@ -51,8 +51,6 @@ public class Utils {
 		}
 
 		buff.close();
-
-		return eleInfo;
 	}
 
 	public boolean writeFile(String path, String text) throws IOException {
@@ -63,6 +61,17 @@ public class Utils {
 		buff.close();
 
 		return true;
+	}
+
+	public boolean olderThan(Date d1, Date d2) {
+		int comparation = d1.compareTo(d2);
+
+		if (comparation >= 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }

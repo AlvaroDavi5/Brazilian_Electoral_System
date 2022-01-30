@@ -7,28 +7,25 @@ import java.lang.ArrayIndexOutOfBoundsException;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		Election election = new Election();
-
 		try {
 			Utils util = new Utils();
-			Election candidatesElection = util.readFile(args[0]);
-			Election partiesElection = util.readFile(args[1]);
+			Election election = new Election();
 
-			candidatesElection.loadEntitiesFromData();
-			partiesElection.loadEntitiesFromData();
+			util.readFile(args[0], election);
+			election.loadEntitiesFromData();
 
-			election.setCandidates(
-				candidatesElection.getCandidates()
-			);
-			election.setParties(
-				partiesElection.getParties()
-			);
+			util.readFile(args[1], election);
+			election.loadEntitiesFromData();
+
 			election.setElectionDate(
 				election.parseStringToDate(args[2])
 			);
+			election.PopulatePartiesCandidatesList();
+
+			Reports reports = new Reports(election);
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Please enter the correct number of arguments (2 arguments)");
+			System.out.println("Please enter the correct number of arguments (3 arguments)");
 		}
 		catch (Exception exception) {
 			System.out.println(exception);

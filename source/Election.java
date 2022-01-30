@@ -152,7 +152,7 @@ public class Election {
 					party.setNumber(
 						Integer.parseInt(splitedLineData[0])
 					);
-					party.setVotes(
+					party.setPartyVotes(
 						Integer.parseInt(splitedLineData[1])
 					);
 					party.setName(splitedLineData[2]);
@@ -166,14 +166,52 @@ public class Election {
 				}
 			}
 		}
+		setEntity('\0');
 		setData("");
 
 		return success;
 	}
 
+	public LinkedList<Candidate> getCandidatesByParty(int partyNumber) {
+		LinkedList<Candidate> candidatesByParty = new LinkedList<Candidate>();
+
+		for (int i = 0; i < getCandidates().size(); i++) {
+			Candidate candidate = getCandidates().get(i);
+
+			if (candidate.getPoliticalPartyNumber() == partyNumber) {
+				candidatesByParty.add(candidate);
+			}
+		}
+
+		return candidatesByParty;
+	}
+
+	public void PopulatePartiesCandidatesList() {
+		for (int i = 0; i < getParties().size(); i++) {
+			Party party = getParties().get(i);
+
+			party.setCandidates(
+				getCandidatesByParty(party.getNumber())
+			);
+
+			for (Candidate candidate : party.getCandidates()) {
+				party.setTotalVotes(
+					party.getTotalVotes() + candidate.getVotes()
+				);
+			}
+			party.setTotalVotes(
+				party.getTotalVotes() + party.getPartyVotes()
+			);
+		}
+	}
+
 	public LinkedList<Candidate> getElectedCandidates() {
-		LinkedList<Candidate> allCandidates = getCandidates();
+		LinkedList<Candidate> allCandidates = new LinkedList<Candidate>();
 		LinkedList<Candidate> electedCandidates = new LinkedList<Candidate>();
+
+		for (Candidate candidate : getCandidates()) {
+			allCandidates.add(candidate);
+		}
 
 		for (int i = 0; i < allCandidates.size(); i++) {
 			if (allCandidates.get(i).getSituation().equals("Eleito")) {
@@ -211,11 +249,11 @@ public class Election {
 			int candidateNumber = 0;
 
 			for (int j = 0; j < allCandidates.size(); j++) {
-				Candidate c1 = allCandidates.get(j);
+				Candidate cand = allCandidates.get(j);
 
-				if (c1.getVotes() > maxVotes) {
-					maxVotes = c1.getVotes();
-					candidateNumber = c1.getNumber();
+				if (cand.getVotes() > maxVotes) {
+					maxVotes = cand.getVotes();
+					candidateNumber = cand.getNumber();
 				}
 			}
 
@@ -232,7 +270,11 @@ public class Election {
 	}
 
 	public LinkedList<Candidate> getMostVotedAndNotElectedCandidates() {
-		LinkedList<Candidate> mostVotedAndNotElectedCandidates = getMostVotedCandidates();
+		LinkedList<Candidate> mostVotedAndNotElectedCandidates = new LinkedList<Candidate>();
+
+		for (Candidate candidate : getMostVotedCandidates()) {
+			mostVotedAndNotElectedCandidates.add(candidate);
+		}
 
 		for (int i = 0; i < mostVotedAndNotElectedCandidates.size(); i++) {
 			Candidate candidate = mostVotedAndNotElectedCandidates.get(i);
@@ -243,6 +285,30 @@ public class Election {
 		}
 
 		return mostVotedAndNotElectedCandidates;
+	}
+
+	public LinkedList<Candidate> getElectedButNotMostVotedCandidates() {
+		Utils utils = new Utils();
+		LinkedList<Candidate> electedButNotMostVotedCandidates = new LinkedList<Candidate>();
+		Candidate lastMostVotedCandidate = getMostVotedCandidates().get(
+			(getMostVotedCandidates().size() - 1)
+		);
+
+		for (Candidate candidate : getElectedCandidates()) {
+			if (lastMostVotedCandidate.getVotes() > candidate.getVotes()) {
+				electedButNotMostVotedCandidates.add(candidate);
+			}
+			else if (lastMostVotedCandidate.getVotes() == candidate.getVotes()) {
+				if (utils.olderThan(lastMostVotedCandidate.getBirthDate(), candidate.getBirthDate())) {
+					electedButNotMostVotedCandidates.add(candidate);
+				}
+				else {
+					electedButNotMostVotedCandidates.add(lastMostVotedCandidate);
+				}
+			}
+		}
+
+		return electedButNotMostVotedCandidates;
 	}
 
 }

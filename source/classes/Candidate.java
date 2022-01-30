@@ -14,6 +14,7 @@ public class Candidate {
 	private String situation = "";
 	private char gender = ' ';
 	private Date birthDate = null;
+	private int position = 0;
 
 
 	// constructor method
@@ -34,6 +35,7 @@ public class Candidate {
 		System.out.println("Candidate gender: " + gender);
 		Election info = new Election();
 		System.out.println("Candidate birthdate: " + info.parseDateToString(birthDate));
+		System.out.println();
 	}
 
 	public int getNumber() {
@@ -100,5 +102,12 @@ public class Candidate {
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
 	}
 }
