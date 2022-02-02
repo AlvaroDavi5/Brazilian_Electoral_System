@@ -1,6 +1,7 @@
 package source;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Collections;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import source.classes.*;
@@ -220,7 +221,7 @@ public class Election {
 		}
 
 		for (int i = 0; i < electedCandidates.size(); i++) {
-			for (int j = i + 1; j < electedCandidates.size(); j++) {
+			for (int j = i+1; j < electedCandidates.size(); j++) {
 				if (electedCandidates.get(i).getVotes() < electedCandidates.get(j).getVotes()) {
 					Candidate aux = electedCandidates.get(i);
 					electedCandidates.set(i, electedCandidates.get(j));
@@ -236,34 +237,37 @@ public class Election {
 		return getElectedCandidates().size();
 	}
 
+	public LinkedList<Candidate> getCandidatesOrderedByVotes() {
+		LinkedList<Candidate> allCandidates = new LinkedList<Candidate>();
+		LinkedList<Candidate> candidatesOrderedByVotes = new LinkedList<Candidate>();
+
+		for (Candidate candidate : getCandidates()) {
+			candidate.setPosition(0);
+			allCandidates.add(candidate);
+		}
+
+		Collections.sort(allCandidates, new CandidatesVotesComparator());
+
+		for (int k = 0; k < allCandidates.size(); k++) {
+			Candidate candidate = allCandidates.get(k);
+			candidate.setPosition(k+1);
+			candidatesOrderedByVotes.add(candidate);
+		}
+
+		return candidatesOrderedByVotes;
+	}
+
 	public LinkedList<Candidate> getMostVotedCandidates() {
 		LinkedList<Candidate> allCandidates = new LinkedList<Candidate>();
 		LinkedList<Candidate> mostVotedCandidates = new LinkedList<Candidate>();
 
-		for (Candidate candidate : getCandidates()) {
+		for (Candidate candidate : getCandidatesOrderedByVotes()) {
 			allCandidates.add(candidate);
 		}
 
-		for (int i = 0; i < getNumberOfElectedCandidates(); i++) {
-			int maxVotes = 0;
-			int candidateNumber = 0;
-
-			for (int j = 0; j < allCandidates.size(); j++) {
-				Candidate cand = allCandidates.get(j);
-
-				if (cand.getVotes() > maxVotes) {
-					maxVotes = cand.getVotes();
-					candidateNumber = cand.getNumber();
-				}
-			}
-
-			for (Candidate candidate : allCandidates) {
-				if (candidate.getNumber() == candidateNumber) {
-					mostVotedCandidates.add(candidate);
-					allCandidates.remove(candidate);
-					break;
-				}
-			}
+		for (int k = 0; k < getNumberOfElectedCandidates(); k++) {
+			Candidate candidate = allCandidates.get(k);
+			mostVotedCandidates.add(candidate);
 		}
 
 		return mostVotedCandidates;
@@ -273,14 +277,8 @@ public class Election {
 		LinkedList<Candidate> mostVotedAndNotElectedCandidates = new LinkedList<Candidate>();
 
 		for (Candidate candidate : getMostVotedCandidates()) {
-			mostVotedAndNotElectedCandidates.add(candidate);
-		}
-
-		for (int i = 0; i < mostVotedAndNotElectedCandidates.size(); i++) {
-			Candidate candidate = mostVotedAndNotElectedCandidates.get(i);
-
-			if (candidate.getSituation().equals("Eleito")) {
-				mostVotedAndNotElectedCandidates.remove(candidate);
+			if (!candidate.getSituation().equals("Eleito")) {
+				mostVotedAndNotElectedCandidates.add(candidate);
 			}
 		}
 
@@ -295,11 +293,14 @@ public class Election {
 		);
 
 		for (Candidate candidate : getElectedCandidates()) {
+			boolean isTheSameCandidate = lastMostVotedCandidate.getNumber() == candidate.getNumber();
+			int isOlderThan = utils.olderThan(lastMostVotedCandidate.getBirthDate(), candidate.getBirthDate());
+
 			if (lastMostVotedCandidate.getVotes() > candidate.getVotes()) {
 				electedButNotMostVotedCandidates.add(candidate);
 			}
-			else if (lastMostVotedCandidate.getVotes() == candidate.getVotes()) {
-				if (utils.olderThan(lastMostVotedCandidate.getBirthDate(), candidate.getBirthDate())) {
+			else if (lastMostVotedCandidate.getVotes() == candidate.getVotes() && !isTheSameCandidate) {
+				if (isOlderThan >= 0) {
 					electedButNotMostVotedCandidates.add(candidate);
 				}
 				else {
@@ -309,6 +310,101 @@ public class Election {
 		}
 
 		return electedButNotMostVotedCandidates;
+	}
+
+	public LinkedList<Party> getPartiesOrderedByTotalVotes() {
+		LinkedList<Party> partiesOrderedByTotalVotes = new LinkedList<Party>();
+
+		for (Party party : getParties()) {
+			partiesOrderedByTotalVotes.add(party);
+		}
+
+		Collections.sort(partiesOrderedByTotalVotes, new PartiesTotalVotesComparator());
+
+		return partiesOrderedByTotalVotes;
+	}
+
+	public int getElectedCandidatesNumberFromParty(Party party) {
+		int electedCandidatesFromParty = 0;
+
+		for (Candidate candidate : getElectedCandidates()) {
+			if (candidate.getPoliticalPartyNumber() == party.getNumber()) {
+				electedCandidatesFromParty++;
+			}
+		}
+
+		return electedCandidatesFromParty;
+	}
+
+	public float getPartyVotesPercent(Party party) {
+		float partyVotesPercent = 0.00f;
+
+		partyVotesPercent = (float) party.getPartyVotes() / (float) party.getTotalVotes();
+
+		return partyVotesPercent * (float) 100;
+	}
+
+	public float getGeneralPercent(float p, float t) {
+		float r = 0.00f;
+
+		r = (float) p / (float) t;
+
+		return r * (float) 100;
+	}
+
+	public LinkedList<Party> getPartiesOrderedByPartyVotes() {
+		LinkedList<Party> partiesOrderedByPartyVotes = new LinkedList<Party>();
+
+		for (Party party : getParties()) {
+			partiesOrderedByPartyVotes.add(party);
+		}
+
+		Collections.sort(partiesOrderedByPartyVotes, new PartiesPartyVotesComparator());
+
+		return partiesOrderedByPartyVotes;
+	}
+
+	public LinkedList<Party> getPartiesWithCandidatesOrderedByVotes() {
+		LinkedList<Party> parties = new LinkedList<Party>();
+
+		for (Party party : getParties()) {
+			parties.add(party);
+		}
+		for (Party party : parties) {
+			Collections.sort(party.getCandidates(), new CandidatesVotesComparator());
+		}
+
+		return parties;
+	}
+
+	public int getAmountOfCandidatesVotes() {
+		int amountOfCandidatesVotes = 0;
+
+		for (Candidate candidate : getCandidates()) {
+			amountOfCandidatesVotes += candidate.getVotes();
+		}
+
+		return amountOfCandidatesVotes;
+	}
+
+	public int getAmountOfPartyVotes() {
+		int amountOfPartyVotes = 0;
+
+		for (Party party : getParties()) {
+			amountOfPartyVotes += party.getPartyVotes();
+		}
+
+		return amountOfPartyVotes;
+	}
+
+	public int getAmountOfTotalVotes() {
+		int amountOfTotalVotes = 0;
+
+		for (Party party : getParties()) {
+			amountOfTotalVotes += party.getTotalVotes();
+		}
+
+		return amountOfTotalVotes;
 	}
 
 }

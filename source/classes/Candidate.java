@@ -1,5 +1,6 @@
 package source.classes;
 import java.util.Date;
+import java.util.LinkedList;
 import source.Election;
 
 
@@ -35,6 +36,7 @@ public class Candidate {
 		System.out.println("Candidate gender: " + gender);
 		Election info = new Election();
 		System.out.println("Candidate birthdate: " + info.parseDateToString(birthDate));
+		System.out.println("Candidate position: " + position);
 		System.out.println();
 	}
 
@@ -50,6 +52,14 @@ public class Candidate {
 	}
 	public void setPoliticalPartyNumber(int politicalPartyNumber) {
 		this.politicalPartyNumber = politicalPartyNumber;
+	}
+	public String getPoliticalPartyNameByNumber(LinkedList<Party> parties) {
+		for (Party party : parties) {
+			if (party.getNumber() == politicalPartyNumber) {
+				return party.getName();
+			}
+		}
+		return "";
 	}
 
 	public String getName() {
@@ -89,7 +99,7 @@ public class Candidate {
 	public void setSituation(String situation) {
 		this.situation = situation;
 	}
-	
+
 	public char getGender() {
 		return gender;
 	}

@@ -63,15 +63,42 @@ public class Utils {
 		return true;
 	}
 
-	public boolean olderThan(Date d1, Date d2) {
-		int comparation = d1.compareTo(d2);
+	public int olderThan(Date d1, Date d2) {
+		int diff = d1.compareTo(d2);
 
-		if (comparation >= 0) {
-			return false;
+		if (diff > 0) {
+			return -1;
+		}
+		else if (diff == 0) {
+			return 0;
 		}
 		else {
-			return true;
+			return 1;
 		}
+	}
+
+	public int calculateAge(String birthDate, String currentDate) {
+		String[] splitedBirthDate = birthDate.split("/");
+		String[] splitedCurrentDate = currentDate.split("/");
+		int birthDateDay = Integer.parseInt(splitedBirthDate[0]);
+		int birthDateMoth = Integer.parseInt(splitedBirthDate[1]);
+		int birthDateYear = Integer.parseInt(splitedBirthDate[2]);
+		int currentDateDay = Integer.parseInt(splitedCurrentDate[0]);
+		int currentDateMoth = Integer.parseInt(splitedCurrentDate[1]);
+		int currentDateYear = Integer.parseInt(splitedCurrentDate[2]);
+
+		int age = currentDateYear - birthDateYear;
+
+		if (currentDateMoth < birthDateMoth) {
+			age--;
+		}
+		else if (currentDateMoth == birthDateMoth) {
+			if (currentDateDay < birthDateDay) {
+				age--;
+			}
+		}
+
+		return age;
 	}
 
 }

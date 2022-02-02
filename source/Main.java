@@ -6,15 +6,16 @@ import java.lang.ArrayIndexOutOfBoundsException;
 
 public class Main {
 
+	// main static method
 	public static void main(String[] args) throws IOException {
 		try {
-			Utils util = new Utils();
+			Utils utils = new Utils();
 			Election election = new Election();
 
-			util.readFile(args[0], election);
+			utils.readFile(args[0], election);
 			election.loadEntitiesFromData();
 
-			util.readFile(args[1], election);
+			utils.readFile(args[1], election);
 			election.loadEntitiesFromData();
 
 			election.setElectionDate(
@@ -23,6 +24,18 @@ public class Main {
 			election.PopulatePartiesCandidatesList();
 
 			Reports reports = new Reports(election);
+
+			reports.displayNumberOfElectedCandidates();
+			reports.displayElectedCandidates();
+			reports.displayMostVotedCandidates();
+			reports.displayMostVotedAndNotElectedCandidates();
+			reports.displayElectedButNotMostVotedCandidates();
+			reports.displayPartiesTotalVotes();
+			reports.displayPartiesVotes();
+			reports.displayPartiesCandidates();
+			reports.displayAgeOfElectedCandidates();
+			reports.displayGenderOfElectedCandidates();
+			reports.displayAllVotes();
 		}
 		catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Please enter the correct number of arguments (3 arguments)");

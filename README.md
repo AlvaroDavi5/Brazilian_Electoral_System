@@ -3,7 +3,7 @@
 
 * [x] Implement constructor for the _Candidate_ and _Party_ classes
 * [x] Implement getters and setters for the _Candidate_ and _Party_ classes
-* [ ] Implement methods to display/save reports about the candidates and parties lists in _ElectionInfo_ class
+* [x] Implement methods to display/save reports about the candidates and parties lists in _ElectionInfo_ class
 * [ ] Create a JAR file called `vereadores.jar` with the compiled classes and a `MANIFEST.mf` file
 	> The MANIFEST file will define the main class  
 	> The _main_ method of the **Main** class must receive the following parameters:  
