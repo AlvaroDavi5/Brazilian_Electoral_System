@@ -1,5 +1,5 @@
-package source.classes;
-import source.Election;
+package src.classes;
+import src.Election;
 
 
 public class Reports {

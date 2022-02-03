@@ -1,5 +1,5 @@
-package source;
-import source.classes.*;
+package src;
+import src.classes.*;
 import java.io.IOException;
 import java.lang.ArrayIndexOutOfBoundsException;
 

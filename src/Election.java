@@ -1,10 +1,10 @@
-package source;
+package src;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Collections;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import source.classes.*;
+import src.classes.*;
 
 
 public class Election {

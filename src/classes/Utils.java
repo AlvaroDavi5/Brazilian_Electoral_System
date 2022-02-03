@@ -1,11 +1,11 @@
-package source.classes;
+package src.classes;
 import java.util.Date;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import source.Election;
+import src.Election;
 
 
 public class Utils {

@@ -1,7 +1,7 @@
-package source.classes;
+package src.classes;
 import java.util.Date;
 import java.util.LinkedList;
-import source.Election;
+import src.Election;
 
 
 public class Candidate {
