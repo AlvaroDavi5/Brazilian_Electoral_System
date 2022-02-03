@@ -27,7 +27,7 @@ public class Reports {
 				i+1 + " - " +
 				candidate.getName() + " / " + candidate.getBallotBoxAlias() +
 				" (" +
-				candidate.getPoliticalPartyNameByNumber(
+				candidate.getPoliticalPartyAliasByNumber(
 					electionInfo.getParties()
 				)
 				+ ", " + candidate.getVotes() + " votos)"
@@ -43,7 +43,7 @@ public class Reports {
 				candidate.getPosition() + " - " +
 				candidate.getName() + " / " + candidate.getBallotBoxAlias() +
 				" (" +
-				candidate.getPoliticalPartyNameByNumber(
+				candidate.getPoliticalPartyAliasByNumber(
 					electionInfo.getParties()
 				)
 				+ ", " + candidate.getVotes() + " votos)"
@@ -53,13 +53,13 @@ public class Reports {
 	}
 
 	public void displayMostVotedAndNotElectedCandidates() {
-		System.out.println("Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos: (com sua posição no ranking de mais votados)");
+		System.out.println("Teriam sido eleitos se a votação fosse majoritária, e não foram eleitos:\n(com sua posição no ranking de mais votados)");
 		for (Candidate candidate : electionInfo.getMostVotedAndNotElectedCandidates()) {
 			System.out.println(
 				candidate.getPosition() + " - " +
 				candidate.getName() + " / " + candidate.getBallotBoxAlias() +
 				" (" +
-				candidate.getPoliticalPartyNameByNumber(
+				candidate.getPoliticalPartyAliasByNumber(
 					electionInfo.getParties()
 				)
 				+ ", " + candidate.getVotes() + " votos)"
@@ -69,13 +69,13 @@ public class Reports {
 	}
 
 	public void displayElectedButNotMostVotedCandidates() {
-		System.out.println("Eleitos, que se beneficiaram do sistema proporcional: (com sua posição no ranking de mais votados)");
+		System.out.println("Eleitos, que se beneficiaram do sistema proporcional:\n(com sua posição no ranking de mais votados)");
 		for (Candidate candidate : electionInfo.getElectedButNotMostVotedCandidates()) {
 			System.out.println(
 				candidate.getPosition() + " - " +
 				candidate.getName() + " / " + candidate.getBallotBoxAlias() +
 				" (" +
-				candidate.getPoliticalPartyNameByNumber(
+				candidate.getPoliticalPartyAliasByNumber(
 					electionInfo.getParties()
 				)
 				+ ", " + candidate.getVotes() + " votos)"
@@ -184,11 +184,11 @@ public class Reports {
 
 	public void displayAllVotes() {
 		System.out.printf(
-			"Total de votos válidos: %d\n",
+			"Total de votos válidos:    %d\n",
 			electionInfo.getAmountOfTotalVotes()
 		);
 		System.out.printf(
-			"Total de votos nominais: %d (%.2f%%)\n",
+			"Total de votos nominais:   %d (%.2f%%)\n",
 			electionInfo.getAmountOfCandidatesVotes(),
 			electionInfo.getGeneralPercent(
 				electionInfo.getAmountOfCandidatesVotes(), electionInfo.getAmountOfTotalVotes()

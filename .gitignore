@@ -4,9 +4,15 @@
 
 # output and test files
 /output
-/test_script
+/test_script/testes/*
+/test_script/trab
 
 # build files and other files
 *.class
 *.jar
 *.pdf
+
+
+# not ignore input test files
+!/input
+!/test_script/testes/serra

@@ -61,6 +61,14 @@ public class Candidate {
 		}
 		return "";
 	}
+	public String getPoliticalPartyAliasByNumber(LinkedList<Party> parties) {
+		for (Party party : parties) {
+			if (party.getNumber() == politicalPartyNumber) {
+				return party.getAlias();
+			}
+		}
+		return "";
+	}
 
 	public String getName() {
 		return name;
