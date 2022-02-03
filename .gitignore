@@ -2,9 +2,11 @@
 # editor/IDE settings
 *.vscode
 
-# output files
+# output and test files
 /output
+/test_script
 
 # build files and other files
 *.class
+*.jar
 *.pdf

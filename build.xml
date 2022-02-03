@@ -1,0 +1,43 @@
+
+<project name="Trabalho_PROG3_2021_2-Alvaro-Elder" default="compile" basedir=".">
+	<description>Build file to Brazilian Electoral System Assignment</description>
+	<!-- build properties -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="mainClass" value="src.Main"/>
+	<!-- build initialization -->
+	<target name="init" description="Initialize necessary structures">
+		<tstamp/>
+		<mkdir dir="${build}"/>
+	</target>
+	<!-- compilation -->
+	<target name="compile" depends="init" description="Compile the sourcecode">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}"/>
+	</target>
+	<!-- packaging -->
+	<target name="jar" depends="compile">
+		<jar destfile="vereadores.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="${mainClass}"/>
+			</manifest>
+		</jar>
+	</target>
+	<!-- execution -->
+	<target name="run" depends="compile" description="Execute the program in normal mode">
+		<java classname="${mainClass}">
+		<arg value="candidatos.csv"/>
+		<arg value="partidos.csv"/>
+		<arg value="15/11/2020"/>
+		<classpath>
+		<pathelement path="${build}"/>
+		</classpath>
+		</java>
+	</target>
+	<!-- clean -->
+	<target name="clean" description="Clear the project">
+		<delete dir="${build}/src/"/>
+		<delete>
+			<fileset dir="." includes="*.csv"/>
+		</delete>
+	</target>
+</project>
