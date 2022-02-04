@@ -196,9 +196,11 @@ public class Election {
 			);
 
 			for (Candidate candidate : party.getCandidates()) {
-				party.setTotalVotes(
-					party.getTotalVotes() + candidate.getVotes()
-				);
+				if (candidate.getVotesDestiny().equals("Válido")) {
+					party.setTotalVotes(
+						party.getTotalVotes() + candidate.getVotes()
+					);
+				}
 			}
 			party.setTotalVotes(
 				party.getTotalVotes() + party.getPartyVotes()
@@ -370,9 +372,11 @@ public class Election {
 		for (Party party : getParties()) {
 			parties.add(party);
 		}
+
 		for (Party party : parties) {
 			Collections.sort(party.getCandidates(), new CandidatesVotesComparator());
 		}
+		Collections.sort(parties, new PartiesCandidateVotesComparator());
 
 		return parties;
 	}
@@ -381,7 +385,9 @@ public class Election {
 		int amountOfCandidatesVotes = 0;
 
 		for (Candidate candidate : getCandidates()) {
-			amountOfCandidatesVotes += candidate.getVotes();
+			if (candidate.getVotesDestiny().equals("Válido")) {
+				amountOfCandidatesVotes += candidate.getVotes();
+			}
 		}
 
 		return amountOfCandidatesVotes;
@@ -398,13 +404,7 @@ public class Election {
 	}
 
 	public int getAmountOfTotalVotes() {
-		int amountOfTotalVotes = 0;
-
-		for (Party party : getParties()) {
-			amountOfTotalVotes += party.getTotalVotes();
-		}
-
-		return amountOfTotalVotes;
+		return getAmountOfCandidatesVotes() + getAmountOfPartyVotes();
 	}
 
 }
