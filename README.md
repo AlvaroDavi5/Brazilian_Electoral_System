@@ -1,8 +1,8 @@
 
 # ABOUT
 
-by _Álvaro Davi S. Alves_ - **2020101874**
-and _Elder Storck_ - **2020······**
+by _Álvaro Davi S. Alves_ - **2020101874**  
+and _Elder Storck_ - **2020101826**
 
 First assignment for the discipline  ```Programação III (Object-Oriented Programming)```.
 
@@ -27,7 +27,7 @@ javac -d ./build ./src/Main.java;
 
 # to run the project
 cd ./build;
-java src.Main ../input/data/candidatos.csv ../input/data/partidos.csv 14/11/2020;
+java src.Main ../input/data/candidatos.csv ../input/data/partidos.csv 15/11/2020;
 cd ..;
 
 
@@ -37,7 +37,7 @@ jar cfm vereadores.jar MANIFEST.mf src/classes src/Election.class src/Main.class
 cd ..;
 
 # to run the jar file
-java -jar ./build/vereadores.jar ./input/data/candidatos.csv ./input/data/partidos.csv 14/11/2020;
+java -jar ./build/vereadores.jar ./input/data/candidatos.csv ./input/data/partidos.csv 15/11/2020;
 ```
 
 ___

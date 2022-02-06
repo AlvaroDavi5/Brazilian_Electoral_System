@@ -10,6 +10,7 @@
 # build files and other files
 *.class
 *.jar
+*.csv
 *.pdf
 
 

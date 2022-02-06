@@ -112,63 +112,68 @@ public class Election {
 		boolean success = false;
 		String[] lines = getData().split("\n");
 
-		for (int i = 0; i < lines.length; i++) {
-			String lineData = lines[i];
-
-			if (lineData != "") {
-				String[] splitedLineData = lineData.split(",");
-
-				for (int j = 0; j < splitedLineData.length; j++) {
-					splitedLineData[j] = splitedLineData[j].trim();
-				}
-
-				if (getEntity() == 'c') {
-					Candidate candidate = new Candidate(
-						splitedLineData[4]
-					);
-					candidate.setNumber(
-						Integer.parseInt(splitedLineData[0])
-					);
-					candidate.setVotes(
-						Integer.parseInt(splitedLineData[1])
-					);
-					candidate.setSituation(splitedLineData[2]);
-					candidate.setName(splitedLineData[3]);
-					candidate.setGender(
-						splitedLineData[5].charAt(0)
-					);
-					candidate.setBirthDate(
-						parseStringToDate(splitedLineData[6])
-					);
-					candidate.setVotesDestiny(splitedLineData[7]);
-					candidate.setPoliticalPartyNumber(
-						Integer.parseInt(splitedLineData[8])
-					);
-
-					addCandidate(candidate);
-					success = true;
-				}
-				else if (getEntity() == 'p') {
-					Party party = new Party(splitedLineData[3]);
-					party.setNumber(
-						Integer.parseInt(splitedLineData[0])
-					);
-					party.setPartyVotes(
-						Integer.parseInt(splitedLineData[1])
-					);
-					party.setName(splitedLineData[2]);
-
-					addParty(party);
-					success = true;
-				}
-				else {
-					System.out.println("Error: entity not found");
-					success = false;
+		try {
+			for (int i = 0; i < lines.length; i++) {
+				String lineData = lines[i];
+	
+				if (lineData.length() != 0 && lineData != "" && lineData != null) {
+					String[] splitedLineData = lineData.split(",");
+	
+					for (int j = 0; j < splitedLineData.length; j++) {
+						splitedLineData[j] = splitedLineData[j].trim();
+					}
+	
+					if (getEntity() == 'c') {
+						Candidate candidate = new Candidate(
+							splitedLineData[4]
+						);
+						candidate.setNumber(
+							Integer.parseInt(splitedLineData[0])
+						);
+						candidate.setVotes(
+							Integer.parseInt(splitedLineData[1])
+						);
+						candidate.setSituation(splitedLineData[2]);
+						candidate.setName(splitedLineData[3]);
+						candidate.setGender(
+							splitedLineData[5].charAt(0)
+						);
+						candidate.setBirthDate(
+							parseStringToDate(splitedLineData[6])
+						);
+						candidate.setVotesDestiny(splitedLineData[7]);
+						candidate.setPoliticalPartyNumber(
+							Integer.parseInt(splitedLineData[8])
+						);
+	
+						addCandidate(candidate);
+						success = true;
+					}
+					else if (getEntity() == 'p') {
+						Party party = new Party(splitedLineData[3]);
+						party.setNumber(
+							Integer.parseInt(splitedLineData[0])
+						);
+						party.setPartyVotes(
+							Integer.parseInt(splitedLineData[1])
+						);
+						party.setName(splitedLineData[2]);
+	
+						addParty(party);
+						success = true;
+					}
+					else {
+						System.out.println("Error: entity not found");
+						success = false;
+					}
 				}
 			}
+			setEntity('\0');
+			setData("");
 		}
-		setEntity('\0');
-		setData("");
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
 
 		return success;
 	}
