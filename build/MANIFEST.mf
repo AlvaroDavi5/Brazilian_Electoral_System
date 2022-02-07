@@ -1,0 +1,3 @@
+Main-Class: src.Main
+Manifest-Version: 1.0
+Created-By: AlvaroDavi5 (Alvaro Davi S. Alves)
