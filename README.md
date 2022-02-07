@@ -56,4 +56,4 @@ ___
 	> The execution command is:  
 		`java -jar vereadores.jar <candidates_file> <parties_file> <election_date>`  
 * [x] Create a Ant `build.xml` file
-* [ ] Create a documentation for the project in PDF format
+* [x] Create a documentation for the project in PDF format

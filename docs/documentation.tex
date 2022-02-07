@@ -1,0 +1,294 @@
+
+% -- classes do documento --
+\documentclass[
+	% -- classe de construcao --
+		12pt, % tamanho da fonte
+		%openright % capitulos começam em pag impar (insere pag vazia caso preciso)
+		oneside, % impressao em apenas um lado
+		a4paper, % formato do papel: A4
+		article, % classe do documento: Artigo
+	% -- opcoes da classe abntex2 --
+		chapter=TITLE, % titulos de capitulos convertidos em letras maiusculas
+		section=TITLE, % titulos de secoes convertidos em letras maiusculas
+		subsection=TITLE, % titulos de subsecoes convertidos em letras maiusculas
+	% -- opções do pacote babel --
+		english, % idioma adicional para hifenizacao
+		spanish, % idioma adicional para hifenizacao
+		brazil % o ultimo idioma e o principal do documento
+]{abntex2} % padrao ABNT2
+
+
+% -- incusao de pacotes --
+\usepackage[utf8]{inputenc} % codificacao do documento para leitura de caracteres unicode
+\usepackage[brazil]{babel} % interpretacao do idioma pt-br
+\usepackage{lmodern} % fonte Latin Modern
+\usepackage{indentfirst} % indenta o primeiro paragrafo de cada secao
+\usepackage{microtype} % para melhorias de justificação
+\usepackage{color} % controle das cores
+\usepackage[T1]{fontenc} % selecao de codigos de fonte
+\usepackage{minted} % destaque de cores para codigos
+\usepackage{amsmath, amsfonts, calc, xcolor} % inclusao de formulas matematicas
+\usepackage{graphicx} % inclusao de graficos e imagens
+\usepackage[brazilian, hyperpageref]{backref} % paginas de citacoes na bibl
+\usepackage[alf, abnt-etal-list=0, abnt-etal-cite=1]{abntex2cite} % citacoes padrao ABNT
+\usepackage{lipsum} % geracao de texto Lorem Ipsum
+\usepackage{lastpage} % usado pela ficha catalografica
+
+
+% -- configuracoes de estilos de capitulos --
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\linespread{0.95}
+
+\makeatletter
+	\setlength{\@fptop}{5pt} % posicionar figuras e tabelas no topo da pag quando adicionadas sozinhas em um pag em branco
+\makeatother
+
+\renewcommand{\ABNTEXpartfontsize}{\normalsize}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\rmdefault}{phv}
+\renewcommand{\sfdefault}{phv}
+\renewcommand{\ttdefault}{pcr}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1
+		Nenhuma citação no texto.
+	\or
+		Citado na página #2.
+	\else
+		Citado #1 vezes nas páginas #2.
+	\fi
+}
+
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+%\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp}
+
+% -- espacamento entre linhas e paragrafos --
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}
+
+% -- compila o indice --
+\makeindex
+
+% -- seneciona raiz do caminho para elementos graficos --
+\graphicspath{ {./img/} }
+
+
+% -- informacoes da capa e folha de rosto --
+\titulo{Implementação do Sistema Eleitoral Brasileiro na Programação}
+\autor{
+Álvaro D. S. Alves \\
+Elder Storck
+}
+\local{Goiabeiras - Vitória - ES - Brasil}
+\data{2022, Fevereiro}
+\orientador{João Paulo A. Almeida}
+\instituicao{
+Universidade Federal do Espírito Santo
+\par
+Curso de Engenharia de Computação
+\par
+Disciplina de Programação III
+}
+\tipotrabalho{Trabalho de Programação}
+\preambulo{Implementação do Sistema Eleitoral Brasileiro na Linguaguem Java (Linguaguem de Programação Orientada a Objetos)}
+
+
+% -- configuracoes do PDF --
+\definecolor{blue}{RGB}{41, 5, 195}
+\makeatletter
+	\hypersetup{
+		%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+		pdfcreator={Álvaro Davi Santos Alves},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}{programação}{java}{POO}, 
+		colorlinks=true, % links coloridos
+		linkcolor=blue, % cor de links internos
+		citecolor=blue, % cor de citacoes bibliograficas
+		filecolor=magenta,
+		urlcolor=blue,
+		bookmarksdepth=4
+	}
+\makeatother
+
+
+% -- inicio do documento --
+\begin{document}
+	\selectlanguage{brazil}
+
+	\frenchspacing % retirar espaço extra obsoleto entre as frases
+
+	\phantompart % adicionar espaco para sumario
+
+	% ----------------------------------------------------------
+	% ELEMENTOS PRE-TEXTUAIS
+	% ----------------------------------------------------------
+
+	%\maketitle % criar o titulo
+	\imprimircapa
+
+	\imprimirfolhaderosto* % (o * indica que havera a ficha bibliografica)
+	\newpage
+
+	\tableofcontents % sumario
+	\newpage
+
+	% ----------------------------------------------------------
+	% ELEMENTOS TEXTUAIS
+	% ----------------------------------------------------------
+	\textual
+
+	\section{Introdução}
+
+		Este trabalho tem como objetivo pôr em prática os conceitos de \emph{Programação Orientada a Objetos} (POO) utilizando a linguagem de programação \textbf{Java}.
+		\\
+
+		A tarefa em questão é utilizar as caracterísicas da POO (encapsulamento, herança, polimorfismo e instanciação) a fim de representar, de maneira abstrata porém clara, o sistema eleitoral brasileiro.
+
+		O trabalho também se utiliza de conceitos dos paradigmas de programação anteriores, como os paradigmas da programação procedural e estruturada, ao implementar funções em blocos, estruturas de repetição, estruturas condicionais, tratamento de erros e exceções além de estruturas de dados.
+
+	\newpage
+
+	\section{Implementação}
+
+    	Para a implementação da solução, o primeiro passo realizado foi o de dividir o problema em partes, por exemplo:
+        \begin{itemize}
+            \item Ler o arquivo csv e armazenar os dados em seus campos no seu formato correto;
+            \item Implementar uma estrutura de dados que atendesse às necessidades para gerenciar os dados em questão;
+            \item Criar um esquema de classes claro e objetivo;
+            \item Implementar funcionalidades para gerenciar os dados;
+            \item Implementar funcionalidades para exibir os relatórios;
+        \end{itemize}
+        Com isso surgiram classes como:
+        \begin{itemize}
+            \item A classe principal \verb|Main|, que apenas recebe os parâmetros e instancia as outras classes;
+            \item A classe \verb|Election|, que realiza todas as ações concernentes à eleição de modo geral;
+            \item A classe \verb|Utils|, que fornece funções simples de leitura e comparação;
+            \item A classe \verb|Reports|, que exibe os relatórios;
+            \item E, por fim, as classes \verb|Candidate| e \verb|Party|, que servem para a instanciação das entidades dos candidatos e partidos.
+        \end{itemize}
+        Além de outras classes utilizadas para comparação e ordenação.
+
+        Todas as classes que possuem \textit{atributos} utilizam o recurso de \underline{encapsulamento}, visando maior restrição e controle sobre tais atributos e possuindo, além de \textit{métodos construtores}, métodos de manipulação dos atributos, conhecidos como \textit{getters} e \textit{setters}.
+
+        Uma vez observado que as classes possuírem diferenças em demasia e poucas semelhanças, não foi vista como necessária a utilização do recurso de \underline{herança} de classes. Porém a implementação de \textit{interfaces} e o \underline{polimorfismo} foram utilizados nas classes comparadoras.
+
+        \newpage
+
+        \subsection{Exemplo de Classe em Java}
+		\begin{minted}[mathescape, linenos, numbersep=5pt, gobble=2, frame=lines, framesep=2mm]{java}
+	    // exports and imports
+        package src.classes;
+        import java.util.LinkedList;
+
+
+        public class Party {
+        	// attributes
+        	private int number = 0;
+        	private String name = "";
+        	private String alias = "";
+        	private int partyVotes = 0;
+        	private int totalVotes = 0;
+        	private LinkedList<Candidate> candidates = null;
+
+
+        	// constructor method
+        	public Party(String alias) {
+        		this.alias = alias;
+        	}
+
+
+        	// methods
+        	public int getNumber() {
+        		return number;
+        	}
+        	public void setNumber(int number) {
+        		this.number = number;
+        	}
+
+        	public String getName() {
+        		return name;
+        	}
+        	public void setName(String name) {
+        		this.name = name;
+        	}
+
+        	public int getPartyVotes() {
+        		return partyVotes;
+        	}
+        	public void setPartyVotes(int votes) {
+        		this.partyVotes = votes;
+        	}
+        }
+		\end{minted}
+
+    \newpage
+
+	\section{Relacionamento entre Classes}
+
+        O relacionamento entre as classes e interfaces mencionadas acima é representado no diagrama a seguir, descrito em UML, a \emph{Unified Modeling Language}.
+    	\\
+
+    	\centerline{
+    	    \includegraphics[width=450px]{UML Classes Diagram.drawio.png}
+    	}
+		\centerline{
+    		\href{https://github.com/AlvaroDavi5/Brazilian_Electoral_System/blob/dev/docs/img/UM_ Classes_Diagram.png}{Figura 1.0 - Diagrama de Classes em UML}
+    	}
+
+        Onde as setas tracejadas represantam a implementação das interfaces (em azul) e as linhas contínuas representam tanto a instanciação de uma classe dentro de outra classe quanto o fluxo do programa.
+
+        Cada classe possui atributos (em amarelo) e/ou métodos (em roxo). É notório o que a classe \textbf{Election} possui uma maior quantidade de métodos do que as outras classes, isso se deve pelo fato desta classe ser referente a todo o contexto do programa para a eleição, que envolve desde a criação das entidades até a manipulação das estruturas que as contém.
+
+        Novamente é visível que a classe \textbf{Main} apenas instancia a classe de eleição e a utiliza para obter os dados que serão exibidos na classe \textbf{Reports}.
+
+    \newpage
+
+	\section{Tratamento de Erros e Exceções}
+
+        A fim de evitar erros, foram feitos tratamentos de excessões. A exemplo, para a funções de leitura e escrita (se necessário) de arquivos foi feito o tratamento de input/output. Para formatação de datas foi utilizada uma biblioteca que retornava uma exceção de conversão, tal exceção também foi tratada.
+
+        Além disso, também foram feitos tratamentos de dados retornados por funções, a fim de evitar erros de tipagem, parâmetros, argumentos ou métodos inválidos.
+
+
+	\section{Known Bugs}
+
+        Como já dito anteriormente, o tratamento de possíveis erros também foi realizado, poŕem isso não impede que novos erros ocorram em caso de divergências, mesmo que sutis.
+
+        Um exemplo que vale ser mencionado se encontra na linha 119 do arquivo \verb|src/Election.java|, onde os dados das linhas dos arquivos CSV são utilizado apenas caso sigam o formato padrão de separação por vírgula e caso cada linha possua a mesma quantidade de colunas/dados entre vírgulas que a primeira linha. Tal situação também possui um tratamento de exceções, que leva em conta a quantidade de colunas ser zero, a linha ser uma string vazia ou a linha ser nula. Qualquer caso fora do formato padrão ou destas 3 exceções resultaria em um erro visível no standart output, prejudicando o fluxo do programa.
+
+        Outro exemplo relacionado ao anterior se encontra na função readFile do arquivo \verb|src/Utils.java|, que apenas leva em conta o formato padrão dos arquivos .csv para as duas entidades, candidato e partido. Qualquer tipo de dado ou formato além desses na base de dados resultaria em um bug.
+
+
+	\section{Testes}
+
+        Fora os bugs mencionados anteriormente, nenhum outro problema foi detectado durante os testes. Testes esses realizados utilizando bases de dados de exemplo, como a base de dados do município da Serra, que pode ser encontrada junto ao repositório do código no \href{https://github.com/AlvaroDavi5/Brazilian_Electoral_System}{GitHub}.
+
+        Além disso, o trabalho passou em todos os cases de teste fornecidos pelo professor, o que auxilia a mensurar o estágio do desenvolvimento.
+
+    \newpage
+
+	\section{Conclusão}
+
+        Por fim, com a realização desse trabalho foi possível compreender mais acerca da aplicabilidade do paradigma de Orientação a Objetos, pôr em prática os conhecimentos na linguagem Java, entender melhor o funcionamento do sistema eleitoral brasileiro além de adquirir contato com o processo de desenvolvimento de software de uma forma organizada, eficiente, documentada e clara, apesar de abstrata.
+
+\end{document}
