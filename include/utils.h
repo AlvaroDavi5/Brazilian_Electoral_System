@@ -19,11 +19,11 @@
 
 
 			// ? Member Functions
-			int countColumns(String row);
+			int countColumns(string row);
 
-			void readFile(String path, Election eleInfo);
+			void readFile(string path, Election eleInfo);
 
-			int olderThan(Date d1, Date d2);
+			int olderThan(time_t d1, time_t d2);
 
 			int calculateAge(time_t birthTime, time_t currentTime);
 	};

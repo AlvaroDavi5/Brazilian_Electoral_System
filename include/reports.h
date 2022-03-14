@@ -15,7 +15,7 @@
 	class Reports {
 		private:
 			// * Members
-			Election electionInfo = null;
+			Election electionInfo;
 
 
 		public:
