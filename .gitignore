@@ -1,0 +1,18 @@
+
+# editor/IDE settings
+*.vscode
+
+# output and test files
+/output
+/test_script
+
+# build files and other files
+*.out
+*.o
+*.cc
+*.csv
+
+
+# not ignore input test files
+!/input
+

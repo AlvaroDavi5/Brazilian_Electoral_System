@@ -1,11 +1,3 @@
-/*
-  - Faltou o locale
-  - Associações não estão corretas no diagrama de classes
-  - Usou pacote "src.classes", que confunde toda a organização das pastas. Não usou election date, recalculou idade com base em datas representadas em strings
-  - Tornar repositório do github privado, ArrayIndexOutOfBoundsException não deveria ter tratada, deveria ser evitada. Deveria ter mais comentários
-*/
-
-
 #include <iostream>
 #include <string>
 #include <locale>
@@ -21,7 +13,7 @@ int main(int argc, char *argv[]) {
 
 	try {
 		if (argc < 4) {
-			cout << "Please enter the correct number of arguments (3 arguments)";
+			cout << "Please enter the correct number of arguments (3 arguments)" << endl;
 			return 1;
 		}
 
@@ -54,7 +46,8 @@ int main(int argc, char *argv[]) {
 		reports.displayAllVotes();
 	}
 	catch (exception e) {
-		cout << "An unexpected error has ocurred!";
+		cout << "An unexpected error has ocurred!" << endl;
+		cout << e << endl;
 	}
 
 	return 0;
