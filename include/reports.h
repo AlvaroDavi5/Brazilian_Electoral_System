@@ -4,9 +4,7 @@
 
 	#include <iostream>
 	#include <string>
-	#include <list>
-	#include <ctime>
-	#include <locale>
+	#include "./utils.h"
 	#include "./election.h"
 
 	using namespace std;
@@ -20,7 +18,7 @@
 
 		public:
 			// ! Constructor(s) and Destructor
-			Reports(Election election);
+			Reports(Election &election);
 			~Reports();
 
 

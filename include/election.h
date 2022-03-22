@@ -4,11 +4,15 @@
 
 	#include <iostream>
 	#include <string>
-	#include <list>
+	#include <cstring>
+	#include <sstream>
+	#include <algorithm>
+	#include <vector>
 	#include <ctime>
-	#include <locale>
 	#include "./candidate.h"
 	#include "./party.h"
+	#include "./utils.h"
+	#include "./comparators.h"
 
 	using namespace std;
 
@@ -19,8 +23,8 @@
 			string data = "";
 			char entity = '\0';
 			time_t electionDate = -1;
-			list<Candidate> candidates;
-			list<Party> parties;
+			vector<Candidate*> candidates;
+			vector<Party*> parties;
 
 
 		public:
@@ -29,60 +33,58 @@
 
 
 			// ? Member Functions
-			time_t parseStringToDate(string strDate);
-			string parseDateToString(time_t date);
+			const string& getData();
+			void setData(const string &newData);
+			void addData(string &newData);
 
-			string getData();
-			void setData(string newData);
-			void addData(string newData);
+			const char getEntity();
+			void setEntity(const char newEntity);
 
-			char getEntity();
-			void setEntity(char newEntity);
+			const time_t getElectionDate();
+			void setElectionDate(const time_t newElectionDate);
 
-			time_t getElectionDate();
-			void setElectionDate(time_t newElectionDate);
+			vector<Candidate*> getCandidates();
+			void setCandidates(vector<Candidate*> newCandidates);
+			void addCandidate(Candidate &newCandidate);
 
-			list<Candidate> getCandidates();
-			void setCandidates(list<Candidate> newCandidates);
-			void addCandidate(Candidate newCandidate);
+			vector<Party*> getParties();
+			void setParties(vector<Party*> newParties);
+			void addParty(Party &newParty);
 
-			list<Party> getParties();
-			void setParties(list<Party> newParties);
-			void addParty(Party newParty);
-
+			void readFile(string path, Election &eleInfo);
 			bool loadEntitiesFromData();
 
-			list<Candidate> getCandidatesByParty(int partyNumber);
+			vector<Candidate*> getCandidatesByParty(int partyNumber);
 
 			void PopulatePartiesCandidatesList();
 
-			list<Candidate> getElectedCandidates();
+			vector<Candidate*> getElectedCandidates();
 
-			int getNumberOfElectedCandidates();
+			const int getNumberOfElectedCandidates();
 
-			list<Candidate> getCandidatesOrderedByVotes();
+			vector<Candidate*> getCandidatesOrderedByVotes();
 
-			list<Candidate> getMostVotedCandidates();
+			vector<Candidate*> getMostVotedCandidates();
 
-			list<Candidate> getMostVotedAndNotElectedCandidates();
+			vector<Candidate*> getMostVotedAndNotElectedCandidates();
 
-			list<Candidate> getElectedButNotMostVotedCandidates();
+			vector<Candidate*> getElectedButNotMostVotedCandidates();
 
-			list<Party> getPartiesOrderedByTotalVotes();
+			vector<Party*> getPartiesOrderedByTotalVotes();
 
-			float getPartyVotesPercent(Party party);
+			const float getPartyVotesPercent(Party party);
 
-			float getGeneralPercent(float p, float t);
+			const float getGeneralPercent(float p, float t);
 
-			list<Party> getPartiesOrderedByPartyVotes();
+			vector<Party*> getPartiesOrderedByPartyVotes();
 
-			list<Party> getPartiesWithCandidatesOrderedByVotes();
+			vector<Party*> getPartiesWithCandidatesOrderedByVotes();
 
-			int getAmountOfCandidatesVotes();
+			const int getAmountOfCandidatesVotes();
 
-			int getAmountOfPartyVotes();
+			const int getAmountOfPartyVotes();
 
-			int getAmountOfTotalVotes();
+			const int getAmountOfTotalVotes();
 	};
 
 #endif // ELECTION_H

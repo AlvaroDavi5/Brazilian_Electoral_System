@@ -4,9 +4,7 @@
 
 	#include <iostream>
 	#include <string>
-	#include <list>
-	#include <ctime>
-	#include <locale>
+	#include <vector>
 	#include "./candidate.h"
 
 	using namespace std;
@@ -20,35 +18,37 @@
 			string alias = "";
 			int partyVotes = 0;
 			int totalVotes = 0;
-			list<Candidate> candidates;
+			vector<Candidate*> candidates;
 
 
 		public:
 			// ! Constructor(s) and Destructor
-			Party(string alias);
+			Party(const string &alias);
 			~Party();
 
 
 			// ? Member Functions
 			void displayPartyInfo();
 
-			int getNumber();
-			void setNumber(int number);
+			const int getNumber();
+			void setNumber(const int number);
 
-			string getName();
-			void setName(string name);
+			const string& getName();
+			void setName(const string &name);
 
-			string getAlias();
-			void setAlias(string alias);
+			const string& getAlias();
+			void setAlias(const string &alias);
 
-			int getPartyVotes();
-			void setPartyVotes(int votes);
+			const int getPartyVotes();
+			void setPartyVotes(const int votes);
 
-			int getTotalVotes();
-			void setTotalVotes(int votes);
+			const int getTotalVotes();
+			void setTotalVotes(const int votes);
 
-			list<Candidate> getCandidates();
-			void setCandidates(list<Candidate> candidates);
+			vector<Candidate*> getCandidates();
+			void setCandidates(vector<Candidate*> candidates);
+			void addCandidate(Candidate &candidate);
+			void removeCandidate(Candidate &candidate);
 	};
 
 #endif // PARTY_H

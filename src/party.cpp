@@ -1,7 +1,7 @@
 #include "../include/party.h"
 
 
-Party::Party(string alias) {
+Party::Party(const string &alias) {
 	this->alias = alias;
 }
 
@@ -15,44 +15,50 @@ void Party::displayPartyInfo() {
 	cout << "\n";
 }
 
-int Party::getNumber() {
+const int Party::getNumber() {
 	return number;
 }
-void Party::setNumber(int number) {
+void Party::setNumber(const int number) {
 	this->number = number;
 }
 
-string Party::getName() {
+const string& Party::getName() {
 	return name;
 }
-void Party::setName(string name) {
+void Party::setName(const string &name) {
 	this->name = name;
 }
 
-string Party::getAlias() {
+const string& Party::getAlias() {
 	return alias;
 }
-void Party::setAlias(string alias) {
+void Party::setAlias(const string &alias) {
 	this->alias = alias;
 }
 
-int Party::getPartyVotes() {
+const int Party::getPartyVotes() {
 	return partyVotes;
 }
-void Party::setPartyVotes(int votes) {
+void Party::setPartyVotes(const int votes) {
 	this->partyVotes = votes;
 }
 
-int Party::getTotalVotes() {
+const int Party::getTotalVotes() {
 	return totalVotes;
 }
-void Party::setTotalVotes(int votes) {
+void Party::setTotalVotes(const int votes) {
 	this->totalVotes = votes;
 }
 
-list<Candidate> Party::getCandidates() {
+vector<Candidate*> Party::getCandidates() {
 	return candidates;
 }
-void Party::setCandidates(list<Candidate> candidates) {
+void Party::setCandidates(vector<Candidate*> candidates) {
 	this->candidates = candidates;
+}
+void addCandidate(Candidate &candidate) {
+	candidates.push_back(&candidate);
+}
+void removeCandidate(Candidate &candidate) {
+	candidates.remove(&candidate);
 }

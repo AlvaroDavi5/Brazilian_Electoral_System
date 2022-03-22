@@ -1,7 +1,7 @@
 #include "../include/candidate.h"
 
 
-Candidate::Candidate(string ballotBoxAlias) {
+Candidate::Candidate(const string &ballotBoxAlias) {
 	this->ballotBoxAlias = ballotBoxAlias;
 }
 
@@ -15,97 +15,81 @@ void Candidate::displayCandidateInfo() {
 	cout << "Candidate situation: " << situation << endl;
 	cout << "Candidate political party number: " << politicalPartyNumber << endl;
 	cout << "Candidate gender: " << gender << endl;
-	Election info = new Election();
-	cout << "Candidate birthdate: " << info.parseDateTostring(birthDate) << endl;
+	Utils util = Utils();
+	cout << "Candidate birthdate: " << util.parseTimeToString(birthDate) << endl;
 	cout << "Candidate position: " << position << endl;
 	cout << "\n";
 }
 
-int Candidate::getNumber() {
+const int Candidate::getNumber() {
 	return number;
 }
-void Candidate::setNumber(int number) {
+void Candidate::setNumber(const int number) {
 	this->number = number;
 }
 
-int Candidate::getPoliticalPartyNumber() {
+const int Candidate::getPoliticalPartyNumber() {
 	return politicalPartyNumber;
 }
-void Candidate::setPoliticalPartyNumber(int politicalPartyNumber) {
+void Candidate::setPoliticalPartyNumber(const int politicalPartyNumber) {
 	this->politicalPartyNumber = politicalPartyNumber;
 }
-string getPoliticalPartyNameByNumber(list<Party> parties) {
-	for (Party party : parties) {
-		if (party.getNumber() == politicalPartyNumber) {
-			return party.getName();
-		}
-	}
-	return "";
-}
-string Candidate::getPoliticalPartyAliasByNumber(list<Party> parties) {
-	for (Party party : parties) {
-		if (party.getNumber() == politicalPartyNumber) {
-			return party.getAlias();
-		}
-	}
-	return "";
-}
 
-string Candidate::getName() {
+const string& Candidate::getName() {
 	return name;
 }
-void Candidate::setName(string name) {
+void Candidate::setName(const string &name) {
 	this->name = name;
 }
 
-string Candidate::getBallotBoxAlias() {
+const string& Candidate::getBallotBoxAlias() {
 	return ballotBoxAlias;
 }
-void Candidate::setBallotBoxAlias(string ballotBoxAlias) {
+void Candidate::setBallotBoxAlias(const string &ballotBoxAlias) {
 	this->ballotBoxAlias = ballotBoxAlias;
 }
 
-int Candidate::getVotes() {
+const int Candidate::getVotes() {
 	return votes;
 }
-void Candidate::setVotes(int votes) {
+void Candidate::setVotes(const int votes) {
 	this->votes = votes;
 }
-void Candidate::addVotes(int votes) {
+void Candidate::addVotes(const int votes) {
 	this->votes += votes;
 }
 
-string Candidate::getVotesDestiny() {
+const string& Candidate::getVotesDestiny() {
 	return votesDestiny;
 }
-void Candidate::setVotesDestiny(string votesDestiny) {
+void Candidate::setVotesDestiny(const string &votesDestiny) {
 	this->votesDestiny = votesDestiny;
 }
 
-string Candidate::getSituation() {
+const string& Candidate::getSituation() {
 	return situation;
 }
-void Candidate::setSituation(string situation) {
+void Candidate::setSituation(const string &situation) {
 	this->situation = situation;
 }
 
-char Candidate::getGender() {
+const char Candidate::getGender() {
 	return gender;
 }
 void Candidate::setGender(char gender) {
 	this->gender = gender;
 }
 
-time_t Candidate::getBirthDate() {
+const time_t Candidate::getBirthDate() {
 	return birthDate;
 }
 void Candidate::setBirthDate(time_t birthDate) {
 	this->birthDate = birthDate;
 }
 
-int Candidate::getPosition() {
+const int Candidate::getPosition() {
 	return position;
 }
-void Candidate::setPosition(int position) {
+void Candidate::setPosition(const int position) {
 	this->position = position;
 }

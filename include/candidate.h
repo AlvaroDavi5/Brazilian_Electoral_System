@@ -4,10 +4,9 @@
 
 	#include <iostream>
 	#include <string>
-	#include <list>
+	#include <vector>
 	#include <ctime>
-	#include <locale>
-	#include "./party.h"
+	#include "./utils.h"
 
 	using namespace std;
 
@@ -29,45 +28,43 @@
 
 		public:
 			// ! Constructor(s) and Destructor
-			Candidate(string ballotBoxAlias);
+			Candidate(const string &ballotBoxAlias);
 			~Candidate();
 
 
 			// ? Member Functions
 			void displayCandidateInfo();
 
-			int getNumber();
-			void setNumber(int number);
+			const int getNumber();
+			void setNumber(const int number);
 
-			int getPoliticalPartyNumber();
-			void setPoliticalPartyNumber(int politicalPartyNumber);
-			string getPoliticalPartyNameByNumber(list<Party> parties);
-			string getPoliticalPartyAliasByNumber(list<Party> parties);
+			const int getPoliticalPartyNumber();
+			void setPoliticalPartyNumber(const int politicalPartyNumber);
 
-			string getName();
-			void setName(string name);
+			const string& getName();
+			void setName(const string &name);
 
-			string getBallotBoxAlias();
-			void setBallotBoxAlias(string ballotBoxAlias);
+			const string& getBallotBoxAlias();
+			void setBallotBoxAlias(const string &ballotBoxAlias);
 
-			int getVotes();
-			void setVotes(int votes);
-			void addVotes(int votes);
+			const int getVotes();
+			void setVotes(const int votes);
+			void addVotes(const int votes);
 
-			string getVotesDestiny();
-			void setVotesDestiny(string votesDestiny);
+			const string& getVotesDestiny();
+			void setVotesDestiny(const string &votesDestiny);
 
-			string getSituation();
-			void setSituation(string situation);
+			const string& getSituation();
+			void setSituation(const string &situation);
 
-			char getGender();
+			const char getGender();
 			void setGender(char gender);
 
-			time_t getBirthDate();
+			const time_t getBirthDate();
 			void setBirthDate(time_t birthDate);
 
-			int getPosition();
-			void setPosition(int position);
+			const int getPosition();
+			void setPosition(const int position);
 	};
 
 #endif // CANDIDATE_H

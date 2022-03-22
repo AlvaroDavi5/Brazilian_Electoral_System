@@ -4,10 +4,7 @@
 
 	#include <iostream>
 	#include <string>
-	#include <list>
 	#include <ctime>
-	#include <locale>
-	#include "./election.h"
 
 	using namespace std;
 
@@ -19,9 +16,10 @@
 
 
 			// ? Member Functions
-			int countColumns(string row);
+			time_t parseStringToTime(const char *strDate);
+			const string parseTimeToString(const time_t time);
 
-			void readFile(string path, Election eleInfo);
+			int countColumns(string row);
 
 			int olderThan(time_t d1, time_t d2);
 
