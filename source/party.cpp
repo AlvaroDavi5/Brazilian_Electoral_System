@@ -4,6 +4,9 @@
 Party::Party(const string &alias) {
 	this->alias = alias;
 }
+Party::~Party() {
+	//// do nothing
+}
 
 
 void Party::displayPartyInfo() {

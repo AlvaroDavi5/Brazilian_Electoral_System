@@ -24,7 +24,7 @@
 		public:
 			// ! Constructor(s) and Destructor
 			Party(const string &alias);
-			// TODO: ~Party();
+			~Party();
 
 
 			// ? Member Functions

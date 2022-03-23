@@ -20,7 +20,7 @@
 		public:
 			// ! Constructor(s) and Destructor
 			Reports(Election &election);
-			// TODO: ~Reports();
+			~Reports();
 
 
 			// ? Member Functions

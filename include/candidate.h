@@ -29,7 +29,7 @@
 		public:
 			// ! Constructor(s) and Destructor
 			Candidate(const string &ballotBoxAlias);
-			// TODO: ~Candidate();
+			~Candidate();
 
 
 			// ? Member Functions

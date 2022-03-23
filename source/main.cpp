@@ -10,6 +10,8 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
+	auto loc = locale("pt_BR.UTF-8");
+	locale::global(loc);
 	setlocale(LC_CTYPE, "");
 
 	try {
@@ -50,6 +52,8 @@ int main(int argc, char *argv[]) {
 		cout << "An unexpected error has ocurred!" << endl;
 		cerr << e->what() << endl;
 	}
+
+	cout.imbue(locale("C"));
 
 	return 0;
 }

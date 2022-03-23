@@ -12,7 +12,12 @@
 
 	class Comparator {
 		public:
-			// ? Member Functions
+			// ! Constructor(s) and Destructor
+
+			Comparator();
+			~Comparator();
+
+
 			static bool CandidatesVotesComparator(Candidate &c1, Candidate &c2) {
 				if (c2.getVotes() == c1.getVotes())
 				{

@@ -4,6 +4,9 @@
 Reports::Reports(Election &election) {
 	this->electionInfo = election;
 }
+Reports::~Reports() {
+	//// do nothing
+}
 
 
 const string& Reports::getPoliticalPartyNameByNumber(vector<Party*> parties, int politicalPartyNumber) {
@@ -41,8 +44,8 @@ void Reports::displayElectedCandidates() {
 			votesOnSingularOrPlural = " voto)";
 		}
 		cout << i+1 << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() <<	" (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
-		cout << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayMostVotedCandidates() {

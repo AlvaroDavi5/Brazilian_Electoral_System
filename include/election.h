@@ -32,7 +32,7 @@
 			// ! Constructor(s) and Destructor
 
 			Election();
-			// TODO: ~Election();
+			~Election();
 
 
 			// ? Member Functions

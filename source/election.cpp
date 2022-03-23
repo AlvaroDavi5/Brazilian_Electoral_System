@@ -4,6 +4,9 @@
 Election::Election() {
 	//// do nothing
 }
+Election::~Election() {
+	//// do nothing
+}
 
 const string& Election::getData() {
 	return data;

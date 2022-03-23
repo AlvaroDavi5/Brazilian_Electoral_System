@@ -4,6 +4,9 @@
 Candidate::Candidate(const string &ballotBoxAlias) {
 	this->ballotBoxAlias = ballotBoxAlias;
 }
+Candidate::~Candidate() {
+	//// do nothing
+}
 
 
 void Candidate::displayCandidateInfo() {

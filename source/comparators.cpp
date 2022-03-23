@@ -1,4 +1,9 @@
 #include "../include/comparators.h"
 
 
-//// only for import the header file
+Comparator::Comparator() {
+	//// do nothing
+}
+Comparator::~Comparator() {
+	//// do nothing
+}

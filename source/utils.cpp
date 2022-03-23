@@ -4,6 +4,9 @@
 Utils::Utils() {
 	//// do nothing
 }
+Utils::~Utils() {
+	//// do nothing
+}
 
 time_t Utils::parseStringToTime(const char *strDate) {
 	struct tm date;
