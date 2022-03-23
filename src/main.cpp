@@ -4,10 +4,12 @@
 #include "../include/utils.h"
 #include "../include/reports.h"
 
+
 using namespace std;
 
 
 int main(int argc, char *argv[]) {
+
 	setlocale(LC_CTYPE, "");
 
 	try {
