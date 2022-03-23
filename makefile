@@ -29,7 +29,7 @@ VALGRIND_FLAGS=-s \
 
 # target 'run' feito para executar o programa
 run: all
-	@ ./bin/${BIN_NAME} ./candidatos.cppsv ./partidos.cppsv 15/11/2020
+	@ ./bin/${BIN_NAME} ./data/candidatos.csv ./data/partidos.csv 15/11/2020
 # ./ executa binario local
 
 
@@ -79,7 +79,7 @@ objectFolder:
 
 # o target 'clean' nao tem como pre-requisito, serve para remover arquivos residuais
 clean:
-	@ rm -rf ./object/*.o *~ ./bin/${BIN_NAME} ./*.txt ./*.cppsv
+	@ rm -rf ./object/*.o *~ ./bin/${BIN_NAME} ./*.txt
 	@ rmdir object bin
 	@ echo " \033[1;31m  Removendo binario \033[41;1;37m./bin/${BIN_NAME}\033[0m\033[1;31m e objetos de compilacao \033[41;1;37m${OBJ}\033[0m\033[1;31m e arquivos de backup  \033[0m "
 	@ echo ''
