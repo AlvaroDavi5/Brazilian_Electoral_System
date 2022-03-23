@@ -46,9 +46,9 @@ int main(int argc, char *argv[]) {
 		reports.displayGenderOfElectedCandidates();
 		reports.displayAllVotes();
 	}
-	catch (const exception e) {
+	catch (const exception* e) {
 		cout << "An unexpected error has ocurred!" << endl;
-		cerr << e.what() << endl;
+		cerr << e->what() << endl;
 	}
 
 	return 0;

@@ -170,9 +170,9 @@ bool Election::loadEntitiesFromData() {
 		setEntity('\0');
 		setData("");
 	}
-	catch (const exception e) {
+	catch (const exception* e) {
 		cout << "An unexpected error has ocurred!" << endl;
-		cerr << e.what() << endl;
+		cerr << e->what() << endl;
 	}
 
 	return success;
