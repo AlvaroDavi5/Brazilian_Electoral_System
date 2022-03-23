@@ -56,9 +56,9 @@ vector<Candidate*> Party::getCandidates() {
 void Party::setCandidates(vector<Candidate*> candidates) {
 	this->candidates = candidates;
 }
-void addCandidate(Candidate &candidate) {
+void Party::addCandidate(Candidate &candidate) {
 	candidates.push_back(&candidate);
 }
-void removeCandidate(Candidate &candidate) {
-	candidates.remove(&candidate);
+void Party::removeCandidate(Candidate &candidate) {
+	// TODO: erase only the element that matches the candidate
 }

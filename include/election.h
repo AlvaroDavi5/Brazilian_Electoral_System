@@ -6,6 +6,7 @@
 	#include <string>
 	#include <cstring>
 	#include <sstream>
+	#include <fstream>
 	#include <algorithm>
 	#include <vector>
 	#include <ctime>
@@ -29,7 +30,9 @@
 
 		public:
 			// ! Constructor(s) and Destructor
-			~Election();
+
+			Election();
+			// TODO: ~Election();
 
 
 			// ? Member Functions
@@ -71,6 +74,8 @@
 			vector<Candidate*> getElectedButNotMostVotedCandidates();
 
 			vector<Party*> getPartiesOrderedByTotalVotes();
+
+			const int getElectedCandidatesNumberFromParty(Party party);
 
 			const float getPartyVotesPercent(Party party);
 

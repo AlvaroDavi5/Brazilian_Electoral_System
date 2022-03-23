@@ -2,15 +2,15 @@
 # macro 'BIN_NAME' recebe o nome do programa em arquivo binario
 BIN_NAME=finalprogram
 
-# macro 'C_SOURCE' usa funcao wildcard para obter os nomes de todos os arquivos de codigo-fonte com extensao .c
-C_SOURCE=$(wildcard ./source/*.c)
+# macro 'C_SOURCE' usa funcao wildcard para obter os nomes de todos os arquivos de codigo-fonte com extensao .cpp
+C_SOURCE=$(wildcard ./source/*.cpp)
 
 # macro 'H_SOURCE' usa funcao wildcard para obter os nomes de todos os arquivos de codigo-fonte com extensao .h
 H_SOURCE=$(wildcard ./include/*.h)
 
-# macro 'OBJ' utiliza todos os nomes dos arquivos de 'C_SOURCE', entretanto substitui .c por .o e 'source' por 'object'
-OBJ=$(subst .c,.o,$(subst source,object,$(C_SOURCE)))
-#OBJ=${C_SOURCE:.c=.o} outra forma de fazer o mesmo
+# macro 'OBJ' utiliza todos os nomes dos arquivos de 'C_SOURCE', entretanto substitui .cpp por .o e 'source' por 'object'
+OBJ=$(subst .cpp,.o,$(subst source,object,$(C_SOURCE)))
+#OBJ=${C_SOURCE:.cpp=.o} outra forma de fazer o mesmo
 
 # definindo compilador e flags
 CPP=g++
@@ -29,7 +29,7 @@ VALGRIND_FLAGS=-s \
 
 # target 'run' feito para executar o programa
 run: all
-	@ ./bin/${BIN_NAME} ./candidatos.csv ./partidos.csv 15/11/2020
+	@ ./bin/${BIN_NAME} ./candidatos.cppsv ./partidos.cppsv 15/11/2020
 # ./ executa binario local
 
 
@@ -62,7 +62,7 @@ objectFolder:
 
 
 # o target '%.o' pega o 'stem' (tronco do nome, sem extensao) e o utiliza como referencia no pre-requisito
-./object/%.o: ./source/%.c ./include/%.h
+./object/%.o: ./source/%.cpp ./include/%.h
 	@ ${CPP} $< ${CPP_FLAGS} -c ${C_FLAGS} -o $@ -I ./include
 	@ echo " \033[0;35m  Gerando objeto de compilacao \033[45;1;37m$@\033[0m\033[0;35m  \033[0m "
 	@ echo ''
@@ -70,7 +70,7 @@ objectFolder:
 
 
 # main e compilado aqui pois nao atende os pre-requisitos para o target anterior
-./object/main.o: ./source/main.c ${H_SOURCE}
+./object/main.o: ./source/main.cpp ${H_SOURCE}
 	@ ${CPP} $< ${CPP_FLAGS} -c ${C_FLAGS} -o $@ -I ./include
 	@ echo " \033[0;34m  Gerando objeto de compilacao \033[44;1;37m$@\033[0m\033[0;34m  \033[0m "
 	@ echo ''
@@ -79,7 +79,7 @@ objectFolder:
 
 # o target 'clean' nao tem como pre-requisito, serve para remover arquivos residuais
 clean:
-	@ rm -rf ./object/*.o *~ ./bin/${BIN_NAME} ./*.txt ./*.csv
+	@ rm -rf ./object/*.o *~ ./bin/${BIN_NAME} ./*.txt ./*.cppsv
 	@ rmdir object bin
 	@ echo " \033[1;31m  Removendo binario \033[41;1;37m./bin/${BIN_NAME}\033[0m\033[1;31m e objetos de compilacao \033[41;1;37m${OBJ}\033[0m\033[1;31m e arquivos de backup  \033[0m "
 	@ echo ''

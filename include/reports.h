@@ -3,6 +3,7 @@
 	#define REPORTS_H
 
 	#include <iostream>
+	#include <iomanip>
 	#include <string>
 	#include "./utils.h"
 	#include "./election.h"
@@ -19,10 +20,13 @@
 		public:
 			// ! Constructor(s) and Destructor
 			Reports(Election &election);
-			~Reports();
+			// TODO: ~Reports();
 
 
 			// ? Member Functions
+			const string& getPoliticalPartyNameByNumber(vector<Party*> parties, int politicalPartyNumber);
+			const string& getPoliticalPartyAliasByNumber(vector<Party*> parties, int politicalPartyNumber);
+
 			void displayNumberOfElectedCandidates();
 
 			void displayElectedCandidates();

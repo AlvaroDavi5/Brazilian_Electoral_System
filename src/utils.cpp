@@ -1,6 +1,10 @@
 #include "../include/utils.h"
 
 
+Utils::Utils() {
+	//// do nothing
+}
+
 time_t Utils::parseStringToTime(const char *strDate) {
 	struct tm date;
 	int day, month, year;
@@ -31,7 +35,7 @@ const string Utils::parseTimeToString(const time_t time) {
 int Utils::countColumns(string row) {
 	int count = 0;
 
-	for (int i = 0; i < row.length(); i++) {
+	for (int i = 0; i < (int)row.length(); i++) {
 		if (row[i] == ',') {
 			count++;
 		}
