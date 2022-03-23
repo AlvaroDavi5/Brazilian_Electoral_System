@@ -8,6 +8,8 @@
 
 # build files and other files
 *.gch
+vereadores
+/bin
 *.out
 *.o
 *.cc

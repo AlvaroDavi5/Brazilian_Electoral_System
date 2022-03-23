@@ -83,7 +83,7 @@ void Reports::displayElectedButNotMostVotedCandidates() {
 
 void Reports::displayPartiesTotalVotes() {
 	cout << "Votação dos partidos e número de candidatos eleitos:" << endl;
-	for (int i = 0; i < electionInfo.getPartiesOrderedByTotalVotes().size(); i++) {
+	for (int i = 0; i < (int)electionInfo.getPartiesOrderedByTotalVotes().size(); i++) {
 		Party* party = electionInfo.getPartiesOrderedByTotalVotes()[i];
 		string candidatesOnSingularOrPlural = " candidatos eleitos";
 		vector<string> votesOnSingularOrPlural = {" votos", " nominais"};
@@ -102,7 +102,7 @@ void Reports::displayPartiesVotes() {
 	cout << fixed;
 	cout << setprecision(2);
 	cout << "Votação dos partidos (apenas votos de legenda):" << endl;
-	for (int i = 0; i < electionInfo.getPartiesOrderedByPartyVotes().size(); i++) {
+	for (int i = 0; i < (int)electionInfo.getPartiesOrderedByPartyVotes().size(); i++) {
 		Party* party = electionInfo.getPartiesOrderedByPartyVotes()[i];
 		if (party->getPartyVotes() <= 0) {
 			cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getPartyVotes() << " voto de legenda (proporção não calculada, 0 voto no partido)" << endl;
@@ -116,7 +116,7 @@ void Reports::displayPartiesVotes() {
 
 void Reports::displayPartiesCandidates() {
 	cout << "Primeiro e último colocados de cada partido:" << endl;
-	for (int i = 0; i < electionInfo.getPartiesWithCandidatesOrderedByVotes().size(); i++) {
+	for (int i = 0; i < (int)electionInfo.getPartiesWithCandidatesOrderedByVotes().size(); i++) {
 		Party* party = electionInfo.getPartiesWithCandidatesOrderedByVotes()[i];
 		Candidate* firstCandidate = party->getCandidates()[0];
 		Candidate* lastCandidate = party->getCandidates()[(party->getCandidates().size()-1)];
