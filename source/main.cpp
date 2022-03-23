@@ -10,9 +10,9 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
+  setlocale(LC_NUMERIC, "pt_BR");
 	auto loc = locale("pt_BR.UTF-8");
 	locale::global(loc);
-	setlocale(LC_CTYPE, "");
 
 	try {
 		if (argc < 4) {

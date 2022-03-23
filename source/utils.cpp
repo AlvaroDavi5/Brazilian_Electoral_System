@@ -68,12 +68,11 @@ int Utils::calculateAge(time_t birthDate, time_t currentDate) {
 	int month = 0;
 	int day = 0;
 
-	struct tm *birthDateStruct = localtime(&birthDate);
 	struct tm *currentDateStruct = localtime(&currentDate);
 
-	year = currentDateStruct->tm_year - birthDateStruct->tm_year;
-	month = currentDateStruct->tm_mon - birthDateStruct->tm_mon;
-	day = currentDateStruct->tm_mday - birthDateStruct->tm_mday;
+	year = currentDateStruct->tm_year - localtime(&birthDate)->tm_year;
+	month = currentDateStruct->tm_mon - localtime(&birthDate)->tm_mon;
+	day = currentDateStruct->tm_mday - localtime(&birthDate)->tm_mday;
 
 	if (month < 0 || (month == 0 && day < 0)) {
 		year--;

@@ -43,7 +43,7 @@ void Reports::displayElectedCandidates() {
 		if (candidate->getVotes() <= 0) {
 			votesOnSingularOrPlural = " voto)";
 		}
-		cout << i+1 << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() <<	" (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
+		cout << i+1 << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() <<	" (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getPoliticalPartyNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
 	}
 	cout << endl;
 }
@@ -55,9 +55,9 @@ void Reports::displayMostVotedCandidates() {
 		if (candidate->getVotes() <= 0) {
 			votesOnSingularOrPlural = " voto)";
 		}
-		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
-		cout << endl;
+		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getPoliticalPartyNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayMostVotedAndNotElectedCandidates() {
@@ -67,9 +67,9 @@ void Reports::displayMostVotedAndNotElectedCandidates() {
 		if (candidate->getVotes() <= 0) {
 			votesOnSingularOrPlural = " voto)";
 		}
-		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
-		cout << endl;
+		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getPoliticalPartyNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayElectedButNotMostVotedCandidates() {
@@ -79,9 +79,9 @@ void Reports::displayElectedButNotMostVotedCandidates() {
 		if (candidate->getVotes() <= 0) {
 			votesOnSingularOrPlural = " voto)";
 		}
-		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
-		cout << endl;
+		cout << candidate->getPosition() << " - " << candidate->getName() << " / " << candidate->getBallotBoxAlias() << " (" << getPoliticalPartyAliasByNumber(electionInfo.getParties(), candidate->getPoliticalPartyNumber()) << ", " << candidate->getVotes() << votesOnSingularOrPlural << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayPartiesTotalVotes() {
@@ -97,8 +97,8 @@ void Reports::displayPartiesTotalVotes() {
 			vector<string> votesOnSingularOrPlural = {" voto", " nominal"};
 		}
 		cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getTotalVotes() << votesOnSingularOrPlural[0] << " (" << (party->getTotalVotes() - party->getPartyVotes()) << votesOnSingularOrPlural[1] << " e " << party->getPartyVotes() << " de legenda), " << electionInfo.getElectedCandidatesNumberFromParty(*party) << candidatesOnSingularOrPlural << endl;
-		cout << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayPartiesVotes() {
@@ -113,8 +113,8 @@ void Reports::displayPartiesVotes() {
 		else {
 			cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getPartyVotes() << " votos de legenda (" << electionInfo.getPartyVotesPercent(*party) << "%% do total do partido)" << endl;
 		}
-		cout << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayPartiesCandidates() {
@@ -148,8 +148,8 @@ void Reports::displayPartiesCandidates() {
 			lastCandidateVotesOnSingularOrPlural = " voto)";
 		}
 		cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << firstCandidate->getBallotBoxAlias() << " (" << firstCandidate->getNumber() << ", " << firstCandidate->getVotes() << firstCandidateVotesOnSingularOrPlural << lastCandidate->getBallotBoxAlias() << " (" << lastCandidate->getNumber() << ", " << lastCandidate->getVotes() << lastCandidateVotesOnSingularOrPlural << endl;
-		cout << endl;
 	}
+	cout << endl;
 }
 
 void Reports::displayAgeOfElectedCandidates() {
