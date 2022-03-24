@@ -24,6 +24,8 @@
 
 
 			// ? Member Functions
+			const string displayFloat(float f);
+
 			const string& getPoliticalPartyNameByNumber(vector<Party*> parties, int politicalPartyNumber);
 			const string& getPoliticalPartyAliasByNumber(vector<Party*> parties, int politicalPartyNumber);
 

@@ -65,7 +65,7 @@
 
 			const int getNumberOfElectedCandidates();
 
-			vector<Candidate*> getCandidatesOrderedByVotes();
+			vector<Candidate*> getCandidatesSortedByVotes();
 
 			vector<Candidate*> getMostVotedCandidates();
 
@@ -73,7 +73,7 @@
 
 			vector<Candidate*> getElectedButNotMostVotedCandidates();
 
-			vector<Party*> getPartiesOrderedByTotalVotes();
+			vector<Party*> getPartiesSortedByTotalVotes();
 
 			const int getElectedCandidatesNumberFromParty(Party party);
 
@@ -81,9 +81,9 @@
 
 			const float getGeneralPercent(float p, float t);
 
-			vector<Party*> getPartiesOrderedByPartyVotes();
+			vector<Party*> getPartiesSortedByPartyVotes();
 
-			vector<Party*> getPartiesWithCandidatesOrderedByVotes();
+			vector<Party*> getPartiesWithCandidatesSortedByVotes();
 
 			const int getAmountOfCandidatesVotes();
 

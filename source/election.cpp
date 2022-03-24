@@ -248,31 +248,37 @@ const int Election::getNumberOfElectedCandidates() {
 	return getElectedCandidates().size();
 }
 
-vector<Candidate*> Election::getCandidatesOrderedByVotes() {
-	vector<Candidate*> allCandidates = vector<Candidate*>();
-	vector<Candidate*> candidatesOrderedByVotes = vector<Candidate*>();
+vector<Candidate*> Election::getCandidatesSortedByVotes() {
+	vector<Candidate*> sortedCandidates = vector<Candidate*>();
 
 	for (Candidate* candidate : getCandidates()) {
-		candidate->setPosition(0);
-		allCandidates.push_back(candidate);
+		sortedCandidates.push_back(candidate);
 	}
 
-	sort(*allCandidates.begin(), *allCandidates.end(), Comparator::CandidatesVotesComparator);
+	for (int i = 0; i < (int)sortedCandidates.size()-1; i++) {
+		for (int j = i+1; j < (int)sortedCandidates.size()-1; j++) {
+			if (Comparator::CandidatesVotesComparator(sortedCandidates[i], sortedCandidates[j]))
+			{
+				Candidate* aux = sortedCandidates[i];
+				sortedCandidates[i] = sortedCandidates[j];
+				sortedCandidates[j] = aux;
+			}
+		}
+	}
 
-	for (int k = 0; k < (int)allCandidates.size(); k++) {
-		Candidate* candidate = (allCandidates)[k];
+	for (int k = 0; k < (int)sortedCandidates.size(); k++) {
+		Candidate* candidate = (sortedCandidates)[k];
 		candidate->setPosition(k+1);
-		candidatesOrderedByVotes.push_back(candidate);
 	}
 
-	return candidatesOrderedByVotes;
+	return sortedCandidates;
 }
 
 vector<Candidate*> Election::getMostVotedCandidates() {
 	vector<Candidate*> allCandidates = vector<Candidate*>();
 	vector<Candidate*> mostVotedCandidates = vector<Candidate*>();
 
-	for (Candidate* candidate : getCandidatesOrderedByVotes()) {
+	for (Candidate* candidate : getCandidatesSortedByVotes()) {
 		allCandidates.push_back(candidate);
 	}
 
@@ -323,16 +329,25 @@ vector<Candidate*> Election::getElectedButNotMostVotedCandidates() {
 	return electedButNotMostVotedCandidates;
 }
 
-vector<Party*> Election::getPartiesOrderedByTotalVotes() {
-	vector<Party*> partiesOrderedByTotalVotes = vector<Party*>();
+vector<Party*> Election::getPartiesSortedByTotalVotes() {
+	vector<Party*> sortedParties = vector<Party*>();
 
 	for (Party* party : getParties()) {
-		partiesOrderedByTotalVotes.push_back(party);
+		sortedParties.push_back(party);
 	}
 
-	sort(*partiesOrderedByTotalVotes.begin(), *partiesOrderedByTotalVotes.end(), Comparator::PartiesTotalVotesComparator);
+	for (int i = 0; i < (int)sortedParties.size()-1; i++) {
+		for (int j = i+1; j < (int)sortedParties.size()-1; j++) {
+			if (Comparator::PartiesTotalVotesComparator(sortedParties[i], sortedParties[j]))
+			{
+				Party* aux = sortedParties[i];
+				sortedParties[i] = sortedParties[j];
+				sortedParties[j] = aux;
+			}
+		}
+	}
 
-	return partiesOrderedByTotalVotes;
+	return sortedParties;
 }
 
 const int Election::getElectedCandidatesNumberFromParty(Party party) {
@@ -363,32 +378,64 @@ const float Election::getGeneralPercent(float p, float t) {
 	return r * (float) 100;
 }
 
-vector<Party*> Election::getPartiesOrderedByPartyVotes() {
-	vector<Party*> partiesOrderedByPartyVotes = vector<Party*>();
+vector<Party*> Election::getPartiesSortedByPartyVotes() {
+	vector<Party*> sortedParties = vector<Party*>();
 
 	for (Party* party : getParties()) {
-		partiesOrderedByPartyVotes.push_back(party);
+		sortedParties.push_back(party);
 	}
 
-	sort(*partiesOrderedByPartyVotes.begin(), *partiesOrderedByPartyVotes.end(), Comparator::PartiesPartyVotesComparator );
+	for (int i = 0; i < (int)sortedParties.size()-1; i++) {
+		for (int j = i+1; j < (int)sortedParties.size()-1; j++) {
+			if (Comparator::PartiesPartyVotesComparator(sortedParties[i], sortedParties[j]))
+			{
+				Party* aux = sortedParties[i];
+				sortedParties[i] = sortedParties[j];
+				sortedParties[j] = aux;
+			}
+		}
+	}
 
-	return partiesOrderedByPartyVotes;
+	return sortedParties;
 }
 
-vector<Party*> Election::getPartiesWithCandidatesOrderedByVotes() {
-	vector<Party*> parties = vector<Party*>();
+vector<Party*> Election::getPartiesWithCandidatesSortedByVotes() {
+	vector<Party*> sortedParties = vector<Party*>();
 
 	for (Party* party : getParties()) {
-		parties.push_back(party);
+		sortedParties.push_back(party);
 	}
 
-	for (Party* party : parties) {
-		vector<Candidate*> candidates = party->getCandidates();
-		sort(*candidates.begin(),*candidates.end(), Comparator::CandidatesVotesComparator );
-	}
-	sort(*parties.begin(), *parties.end(), Comparator::PartiesCandidateVotesComparator );
+	for (int i = 0; i < (int)sortedParties.size()-1; i++) {
+		Party* party = sortedParties[i];
+		vector<Candidate*> sortedCandidates = vector<Candidate*>();
 
-	return parties;
+		for (Candidate* candidate : party->getCandidates()) {
+			sortedCandidates.push_back(candidate);
+		}
+		for (int i = 0; i < (int)sortedCandidates.size()-1; i++) {
+			for (int j = i+1; j < (int)sortedCandidates.size()-1; j++) {
+				if (Comparator::CandidatesVotesComparator(sortedCandidates[i], sortedCandidates[j]))
+				{
+					Candidate* aux = sortedCandidates[i];
+					sortedCandidates[i] = sortedCandidates[j];
+					sortedCandidates[j] = aux;
+				}
+			}
+		}
+		party->setCandidates(sortedCandidates);
+
+		for (int j = i+1; j < (int)sortedParties.size()-1; j++) {
+			if (Comparator::PartiesCandidateVotesComparator(sortedParties[i], sortedParties[j]))
+			{
+				Party* aux = sortedParties[i];
+				sortedParties[i] = sortedParties[j];
+				sortedParties[j] = aux;
+			}
+		}
+	}
+
+	return sortedParties;
 }
 
 const int Election::getAmountOfCandidatesVotes() {

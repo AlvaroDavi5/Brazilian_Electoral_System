@@ -8,6 +8,18 @@ Reports::~Reports() {
 	//// do nothing
 }
 
+const string Reports::displayFloat(float f) {
+	int i = f;
+	int r = (f - i) * 100;
+	string auxZero = "";
+
+	if (r % 10 == 0) {
+		auxZero = "0";
+	}
+	string s = to_string(i) + "," + to_string(r) + auxZero;
+
+	return s;
+}
 
 const string& Reports::getPoliticalPartyNameByNumber(vector<Party*> parties, int politicalPartyNumber) {
 	const string& defaultStr = "";
@@ -86,8 +98,8 @@ void Reports::displayElectedButNotMostVotedCandidates() {
 
 void Reports::displayPartiesTotalVotes() {
 	cout << "Votação dos partidos e número de candidatos eleitos:" << endl;
-	for (int i = 0; i < (int)electionInfo.getPartiesOrderedByTotalVotes().size(); i++) {
-		Party* party = electionInfo.getPartiesOrderedByTotalVotes()[i];
+	for (int i = 0; i < (int)electionInfo.getPartiesSortedByTotalVotes().size(); i++) {
+		Party* party = electionInfo.getPartiesSortedByTotalVotes()[i];
 		string candidatesOnSingularOrPlural = " candidatos eleitos";
 		vector<string> votesOnSingularOrPlural = {" votos", " nominais"};
 		if (electionInfo.getElectedCandidatesNumberFromParty(*party) <= 1) {
@@ -105,13 +117,13 @@ void Reports::displayPartiesVotes() {
 	cout << fixed;
 	cout << setprecision(2);
 	cout << "Votação dos partidos (apenas votos de legenda):" << endl;
-	for (int i = 0; i < (int)electionInfo.getPartiesOrderedByPartyVotes().size(); i++) {
-		Party* party = electionInfo.getPartiesOrderedByPartyVotes()[i];
+	for (int i = 0; i < (int)electionInfo.getPartiesSortedByPartyVotes().size(); i++) {
+		Party* party = electionInfo.getPartiesSortedByPartyVotes()[i];
 		if (party->getPartyVotes() <= 0) {
 			cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getPartyVotes() << " voto de legenda (proporção não calculada, 0 voto no partido)" << endl;
 		}
 		else {
-			cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getPartyVotes() << " votos de legenda (" << electionInfo.getPartyVotesPercent(*party) << "%% do total do partido)" << endl;
+			cout << i+1 << " - " << party->getAlias() << " - " << party->getNumber() << ", " << party->getPartyVotes() << " votos de legenda (" << displayFloat(electionInfo.getPartyVotesPercent(*party)) << "% do total do partido)" << endl;
 		}
 	}
 	cout << endl;
@@ -119,8 +131,8 @@ void Reports::displayPartiesVotes() {
 
 void Reports::displayPartiesCandidates() {
 	cout << "Primeiro e último colocados de cada partido:" << endl;
-	for (int i = 0; i < (int)electionInfo.getPartiesWithCandidatesOrderedByVotes().size(); i++) {
-		Party* party = electionInfo.getPartiesWithCandidatesOrderedByVotes()[i];
+	for (int i = 0; i < (int)electionInfo.getPartiesWithCandidatesSortedByVotes().size(); i++) {
+		Party* party = electionInfo.getPartiesWithCandidatesSortedByVotes()[i];
 		Candidate* firstCandidate = party->getCandidates()[0];
 		Candidate* lastCandidate = party->getCandidates()[(party->getCandidates().size()-1)];
 		for (Candidate* actualCandidate : party->getCandidates()) {
@@ -178,11 +190,11 @@ void Reports::displayAgeOfElectedCandidates() {
 		}
 		ageTotal++;
 	}
-	cout << "      Idade < 30: " << age1 << " (" << ((float) age1 / ageTotal * 100) << "%%)" << endl;
-	cout << "30 <= Idade < 40: " << age2 << " (" << ((float) age2 / ageTotal * 100) << "%%)" << endl;
-	cout << "40 <= Idade < 50: " << age3 << " (" << ((float) age3 / ageTotal * 100) << "%%)" << endl;
-	cout << "50 <= Idade < 60: " << age4 << " (" << ((float) age4 / ageTotal * 100) << "%%)" << endl;
-	cout << "60 <= Idade     : " << age5 << " (" << ((float) age5 / ageTotal * 100) << "%%)" << endl;
+	cout << "      Idade < 30: " << age1 << " (" << displayFloat((float) age1 / ageTotal * 100) << "%)" << endl;
+	cout << "30 <= Idade < 40: " << age2 << " (" << displayFloat((float) age2 / ageTotal * 100) << "%)" << endl;
+	cout << "40 <= Idade < 50: " << age3 << " (" << displayFloat((float) age3 / ageTotal * 100) << "%)" << endl;
+	cout << "50 <= Idade < 60: " << age4 << " (" << displayFloat((float) age4 / ageTotal * 100) << "%)" << endl;
+	cout << "60 <= Idade     : " << age5 << " (" << displayFloat((float) age5 / ageTotal * 100) << "%)" << endl;
 	cout << endl;
 }
 
@@ -198,13 +210,13 @@ void Reports::displayGenderOfElectedCandidates() {
 		}
 		total++;
 	}
-	cout << "Feminino: " << female << " (" << electionInfo.getGeneralPercent(female, total) << "%%)" << endl;
-	cout << "Masculino: " << male << " (" << electionInfo.getGeneralPercent(male, total) << "%%)" << endl;
+	cout << "Feminino: " << female << " (" << displayFloat(electionInfo.getGeneralPercent(female, total)) << "%)" << endl;
+	cout << "Masculino: " << male << " (" << displayFloat(electionInfo.getGeneralPercent(male, total)) << "%)" << endl;
 	cout << endl;
 }
 
 void Reports::displayAllVotes() {
 	cout << "Total de votos válidos:    " << electionInfo.getAmountOfTotalVotes() << endl;
-	cout << "Total de votos nominais:   " << electionInfo.getAmountOfCandidatesVotes() << " (" << electionInfo.getGeneralPercent(electionInfo.getAmountOfCandidatesVotes(), electionInfo.getAmountOfTotalVotes()) << "%%)" << endl;
-	cout << "Total de votos de legenda: " << electionInfo.getAmountOfPartyVotes() << " (" << electionInfo.getGeneralPercent(electionInfo.getAmountOfPartyVotes(), electionInfo.getAmountOfTotalVotes()) << "%%)" << endl;
+	cout << "Total de votos nominais:   " << electionInfo.getAmountOfCandidatesVotes() << " (" << displayFloat(electionInfo.getGeneralPercent(electionInfo.getAmountOfCandidatesVotes(), electionInfo.getAmountOfTotalVotes())) << "%)" << endl;
+	cout << "Total de votos de legenda: " << electionInfo.getAmountOfPartyVotes() << " (" << displayFloat(electionInfo.getGeneralPercent(electionInfo.getAmountOfPartyVotes(), electionInfo.getAmountOfTotalVotes())) << "%)" << endl;
 }
