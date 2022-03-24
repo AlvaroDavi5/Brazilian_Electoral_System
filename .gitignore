@@ -8,6 +8,7 @@
 /test_script/trab
 
 # build files and other files
+**/.DS_Store
 *.class
 *.jar
 *.csv
